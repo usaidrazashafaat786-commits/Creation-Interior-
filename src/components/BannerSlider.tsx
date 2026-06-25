@@ -5,22 +5,22 @@ import { BannerSlide } from "../types";
 
 const defaultSlides = [
   {
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&auto=format&fit=crop&q=80",
-    title: "Sculpting Luxury Interiors",
+    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&auto=format&fit=crop&q=80",
+    title: "Transform Your Home with Timeless Elegance",
     subtitle: "Artisanal Woodwork & Premium Textures",
     tagline: "Creation Interiors Premium Collection"
   },
   {
-    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&auto=format&fit=crop&q=80",
-    title: "The Golden Standard of Comfort",
-    subtitle: "Plush Velvets, Real Marbles & Premium Teak",
-    tagline: "New Seasonal Arrivals"
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&auto=format&fit=crop&q=80",
+    title: "Artisanal Dining & Bespoke Teak Tables",
+    subtitle: "Sculpting Luxurious Living Spaces",
+    tagline: "New Season Arrivals"
   },
   {
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&auto=format&fit=crop&q=80",
-    title: "Bespoke Space Architecture",
-    subtitle: "Minimalist Sliding Wardrobes & Modular Shelves",
-    tagline: "Custom Dimensions Fabricated to Order"
+    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1200&auto=format&fit=crop&q=80",
+    title: "Master Bedroom Royal Bedstead Sets",
+    subtitle: "Velvet Paneling & Handcrafted Dressing",
+    tagline: "Bespoke Royal Suites"
   }
 ];
 

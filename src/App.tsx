@@ -80,12 +80,12 @@ export default function App() {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [maxPrice, setMaxPrice] = useState<number>(60000);
+  const [maxPrice, setMaxPrice] = useState<number>(600000);
 
   // Dynamic state managers for Admin Customizer
   const [categories, setCategories] = useState<string[]>(() => {
     const saved = localStorage.getItem("creation_categories");
-    return saved ? JSON.parse(saved) : ["Sofas", "Beds", "Dining Tables", "Chairs", "Wardrobes", "Foam Products"];
+    return saved ? JSON.parse(saved) : ["Bedroom Furniture", "Dining Furniture", "Chairs", "Wardrobes", "Foam Products"];
   });
 
   const [bannerSlides, setBannerSlides] = useState<BannerSlide[]>(() => {
@@ -287,7 +287,7 @@ export default function App() {
     setIsCartOpen(false);
 
     // Prompt user and open the window Safely in new targets
-    alert(`🎉 Order Registered Successfully!\n\nID: ${orderId}\nTotal: ₹ ${subtotal.toLocaleString("en-IN")}\n\nWe will now open WhatsApp to send these specifications directly to Creation Interiors!`);
+    alert(`🎉 Order Registered Successfully!\n\nID: ${orderId}\nTotal: Rs. ${subtotal.toLocaleString("en-IN")}\n\nWe will now open WhatsApp to send these specifications directly to Creation Interiors!`);
     
     window.open(whatsappLink, "_blank");
   };
@@ -341,138 +341,354 @@ export default function App() {
       />
 
       {/* INTERACTIVE STOREFRONT VIEW */}
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-9">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
         
         {/* Banner Hero Slides */}
         <BannerSlider slides={bannerSlides} />
 
         {/* Quick Info bar */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-5 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-900 rounded-2xl shadow-sm text-xs flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#96bd2d]/10 flex items-center justify-center text-[#96bd2d] text-xl">
               🚚
             </div>
             <div>
-              <h4 className="font-bold">Pan-India Freight Delivery</h4>
-              <p className="text-zinc-400 mt-0.5">Free transit insurance & on-site assembly tools</p>
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-50">Pan-Pakistan Secure Transit</h4>
+              <p className="text-zinc-400 mt-0.5">Free transit insurance & premium white-glove on-site installation</p>
             </div>
           </div>
-          <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
+          <div className="p-5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#96bd2d]/10 flex items-center justify-center text-[#96bd2d] text-xl">
               🔨
             </div>
             <div>
-              <h4 className="font-bold">Artisanal Customization</h4>
-              <p className="text-zinc-400 mt-0.5">Custom dimension fabrics & seasoned teakwood slabs</p>
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-50">Artisanal Customization</h4>
+              <p className="text-zinc-400 mt-0.5">Custom dimension fabrics & seasoned luxury teakwood slabs</p>
             </div>
           </div>
-          <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
+          <div className="p-5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#96bd2d]/10 flex items-center justify-center text-[#96bd2d] text-xl">
               📱
             </div>
             <div>
-              <h4 className="font-bold">WhatsApp Direct dispatch Checkouts</h4>
-              <p className="text-zinc-400 mt-0.5">Secure item details sent directly to the managers</p>
+              <h4 className="font-bold text-zinc-900 dark:text-zinc-50">Direct WhatsApp Checkout</h4>
+              <p className="text-zinc-400 mt-0.5">Secure order blueprints sent directly to senior showroom managers</p>
             </div>
           </div>
         </section>
 
         {/* Category Filter ribbons */}
-        <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} categories={categories} />
-
-        {/* Catalog grid and filters decks */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Left filtration panel sidebar */}
-          <div className="lg:col-span-3 space-y-6">
-            
-            {/* Range inputs */}
-            <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm text-xs space-y-4">
-              <h4 className="font-serif font-bold text-sm text-zinc-900 dark:text-zinc-100 border-b border-zinc-100 dark:border-zinc-800 pb-2 flex items-center gap-2">
-                <span>Price Range Limit</span>
-              </h4>
-              <div>
-                <div className="flex justify-between text-[11px] font-bold text-zinc-400 mb-2">
-                  <span>Min: ₹ 0</span>
-                  <span className="text-amber-600 dark:text-amber-400">Max: ₹ {maxPrice.toLocaleString("en-IN")}</span>
-                </div>
-                <input
-                  type="range"
-                  min="2000"
-                  max="60000"
-                  step="1000"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-                  className="w-full accent-amber-500 outline-none h-1 bg-zinc-200 rounded-lg cursor-pointer dark:bg-zinc-700"
-                />
-                <span className="text-[10px] text-zinc-400 block mt-2 text-right">Adjust slider limits to filter premium models</span>
-              </div>
-            </div>
-
-            {/* Order history section */}
-            {user ? (
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm">
-                <OrderHistory orders={currentUserOrders} />
-              </div>
-            ) : (
-              <div className="p-6 bg-zinc-100 dark:bg-zinc-900/50 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl text-center text-xs text-zinc-500 space-y-2.5">
-                <Landmark className="w-6 h-6 text-amber-500 mx-auto" />
-                <p>Log in as customer to unlock your dynamic Purchase Order Receipts list.</p>
-                <button
-                  onClick={() => setIsAuthOpen(true)}
-                  className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
-                >
-                  Login Now
-                </button>
-              </div>
-            )}
-
-          </div>
-
-          {/* Catalog list right */}
-          <div className="lg:col-span-9 space-y-5">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-zinc-500">
-                Showing <strong className="text-zinc-850 dark:text-zinc-200">{filteredProducts.length}</strong> premium models matched
-              </span>
-              
-              {selectedCategory && (
-                <span className="text-[10px] font-bold px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-full tracking-wider uppercase">
-                  Category: {selectedCategory}
-                </span>
-              )}
-            </div>
-
-            {filteredProducts.length === 0 ? (
-              <div className="text-center py-20 bg-white dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-850 rounded-3xl">
-                <Sofa className="w-12 h-12 text-zinc-300 mx-auto mb-3" />
-                <p className="text-sm font-bold text-zinc-800 dark:text-zinc-300">No furniture matching your criteria.</p>
-                <button
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedCategory(null);
-                    setMaxPrice(60000);
-                  }}
-                  className="text-xs text-amber-600 dark:text-amber-400 font-bold mt-1 hover:underline"
-                >
-                  Clear All Filters
-                </button>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {filteredProducts.map((prod) => (
-                  <ProductCard
-                    key={prod.id}
-                    product={prod}
-                    onShowDetails={setSelectedProduct}
-                    onAddToCart={handleAddToCart}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-
+        <div className="pt-2">
+          <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} categories={categories} />
         </div>
+
+        {/* EDITORIAL RENDERING VS SEARCH CATALOGUE RESULTS */}
+        {selectedCategory === null && searchQuery === "" ? (
+          /* RENDER THE COMPETITOR'S REPLICA LANDING PAGE */
+          <div className="space-y-20">
+            
+            {/* 1. Bedroom Furniture Section */}
+            <section className="space-y-8">
+              <div className="text-center space-y-4">
+                <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100">
+                  Bedroom Furniture
+                </h2>
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => setSelectedCategory("Bedroom Furniture")}
+                    className="border border-zinc-300 dark:border-zinc-700 px-7 py-2.5 rounded-none hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-xs font-serif tracking-widest uppercase font-medium"
+                  >
+                    View all
+                  </button>
+                </div>
+              </div>
+
+              {/* Bedroom Row Carousel/Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {products
+                  .filter((p) => p.category === "Bedroom Furniture")
+                  .slice(0, 4)
+                  .map((prod) => (
+                    <ProductCard
+                      key={prod.id}
+                      product={prod}
+                      onShowDetails={setSelectedProduct}
+                      onAddToCart={handleAddToCart}
+                    />
+                  ))}
+              </div>
+
+              {/* Delicate Pagination Indicator */}
+              <div className="flex items-center justify-center gap-3 text-zinc-400 text-xs">
+                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
+                  &lt;
+                </button>
+                <span className="font-mono text-[11px] tracking-wider select-none">1 / 1</span>
+                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
+                  &gt;
+                </button>
+              </div>
+            </section>
+
+            {/* 2. Premium Split Mid-Promo Banner Block */}
+            <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-zinc-50/50 dark:bg-zinc-900/30 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-900/50">
+              <div className="md:col-span-6 overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 shadow-sm aspect-[16/10]">
+                <img
+                  src="https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=800&auto=format&fit=crop&q=80"
+                  alt="Fine Dining Furniture Design"
+                  className="w-full h-full object-cover hover:scale-103 transition-transform duration-700"
+                />
+              </div>
+              
+              <div className="md:col-span-6 space-y-6 md:pl-4">
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold tracking-widest text-[#96bd2d] uppercase">
+                    FURNITURE THAT FEELS LIKE
+                  </h3>
+                  <h4 className="text-4xl md:text-5xl font-serif italic tracking-tight text-zinc-900 dark:text-zinc-100 font-medium">
+                    Home
+                  </h4>
+                </div>
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed max-w-lg">
+                  From luxurious family dinners to quiet, peaceful evenings, our pieces are meticulously handcrafted using premium materials to turn every room into a timeless sanctuary you love coming back to.
+                </p>
+                <div>
+                  <button
+                    onClick={() => setSelectedCategory("Dining Furniture")}
+                    className="px-8 py-3.5 bg-zinc-900 hover:bg-zinc-850 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-serif text-xs tracking-widest uppercase font-medium transition duration-150 shadow-sm outline-none"
+                  >
+                    Shop Now
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            {/* 3. Dining Furniture Section */}
+            <section className="space-y-8">
+              <div className="text-center space-y-4">
+                <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100">
+                  Dining Furniture
+                </h2>
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => setSelectedCategory("Dining Furniture")}
+                    className="border border-zinc-300 dark:border-zinc-700 px-7 py-2.5 rounded-none hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-xs font-serif tracking-widest uppercase font-medium"
+                  >
+                    View all
+                  </button>
+                </div>
+              </div>
+
+              {/* Dining Row Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {products
+                  .filter((p) => p.category === "Dining Furniture")
+                  .slice(0, 4)
+                  .map((prod) => (
+                    <ProductCard
+                      key={prod.id}
+                      product={prod}
+                      onShowDetails={setSelectedProduct}
+                      onAddToCart={handleAddToCart}
+                    />
+                  ))}
+              </div>
+
+              {/* Pagination indicators */}
+              <div className="flex items-center justify-center gap-3 text-zinc-400 text-xs">
+                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
+                  &lt;
+                </button>
+                <span className="font-mono text-[11px] tracking-wider select-none">1 / 1</span>
+                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
+                  &gt;
+                </button>
+              </div>
+            </section>
+
+            {/* 4. Complete Catalog & Range Slider Section below */}
+            <section className="border-t border-zinc-100 dark:border-zinc-900 pt-16 space-y-8">
+              <div className="space-y-2">
+                <h3 className="text-xl font-serif text-zinc-900 dark:text-zinc-50 font-bold">
+                  Browse Complete Custom Catalog
+                </h3>
+                <p className="text-xs text-zinc-500">
+                  Apply fine filters to view dynamic models, custom bedside vanities and premium products.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Left filtration panel sidebar */}
+                <div className="lg:col-span-3 space-y-6">
+                  {/* Range inputs */}
+                  <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm text-xs space-y-4">
+                    <h4 className="font-serif font-bold text-sm text-zinc-900 dark:text-zinc-100 border-b border-zinc-100 dark:border-zinc-800 pb-2 flex items-center gap-2">
+                      <span>Price Range Limit</span>
+                    </h4>
+                    <div>
+                      <div className="flex justify-between text-[11px] font-bold text-zinc-400 mb-2">
+                        <span>Min: Rs. 0</span>
+                        <span className="text-amber-600 dark:text-amber-400">Max: Rs. {maxPrice.toLocaleString("en-IN")}</span>
+                      </div>
+                      <input
+                        type="range"
+                        min="5000"
+                        max="600000"
+                        step="5000"
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                        className="w-full accent-[#96bd2d] outline-none h-1 bg-zinc-200 rounded-lg cursor-pointer dark:bg-zinc-700"
+                      />
+                      <span className="text-[10px] text-zinc-400 block mt-2 text-right">Adjust slider limits to filter premium models</span>
+                    </div>
+                  </div>
+
+                  {/* Order history section */}
+                  {user ? (
+                    <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm">
+                      <OrderHistory orders={currentUserOrders} />
+                    </div>
+                  ) : (
+                    <div className="p-6 bg-zinc-100 dark:bg-zinc-900/50 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl text-center text-xs text-zinc-500 space-y-2.5">
+                      <Landmark className="w-6 h-6 text-amber-500 mx-auto" />
+                      <p>Log in as customer to unlock your dynamic Purchase Order Receipts list.</p>
+                      <button
+                        onClick={() => setIsAuthOpen(true)}
+                        className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                      >
+                        Login Now
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Catalog list right */}
+                <div className="lg:col-span-9 space-y-5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-zinc-500">
+                      Showing All <strong className="text-zinc-850 dark:text-zinc-200">{filteredProducts.length}</strong> premium models matched
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {filteredProducts.map((prod) => (
+                      <ProductCard
+                        key={prod.id}
+                        product={prod}
+                        onShowDetails={setSelectedProduct}
+                        onAddToCart={handleAddToCart}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        ) : (
+          /* STANDARD FILTERED GRID VIEW (ACTIVATES WHEN AN INLINE SEARCH OR SPECIFIC CATEGORY PILL IS CLICKED) */
+          <div className="space-y-6 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-900 pb-4">
+              <div>
+                <h3 className="text-lg font-serif font-bold text-zinc-900 dark:text-zinc-100">
+                  Search Results & Collections
+                </h3>
+                <p className="text-xs text-zinc-500 mt-1">
+                  Matched products matching your specific query filter
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategory(null);
+                  setMaxPrice(600000);
+                }}
+                className="text-xs font-bold text-[#96bd2d] hover:underline"
+              >
+                Clear Search & Go Home
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left filtration panel sidebar */}
+              <div className="lg:col-span-3 space-y-6">
+                
+                {/* Range inputs */}
+                <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm text-xs space-y-4">
+                  <h4 className="font-serif font-bold text-sm text-zinc-900 dark:text-zinc-100 border-b border-zinc-100 dark:border-zinc-800 pb-2 flex items-center gap-2">
+                    <span>Price Range Limit</span>
+                  </h4>
+                  <div>
+                    <div className="flex justify-between text-[11px] font-bold text-zinc-400 mb-2">
+                      <span>Min: Rs. 0</span>
+                      <span className="text-amber-600 dark:text-amber-400">Max: Rs. {maxPrice.toLocaleString("en-IN")}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="5000"
+                      max="600000"
+                      step="5000"
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                      className="w-full accent-[#96bd2d] outline-none h-1 bg-zinc-200 rounded-lg cursor-pointer dark:bg-zinc-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Customer Purchase Order list */}
+                {user ? (
+                  <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm">
+                    <OrderHistory orders={currentUserOrders} />
+                  </div>
+                ) : null}
+
+              </div>
+
+              {/* Catalog list right */}
+              <div className="lg:col-span-9 space-y-5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-zinc-500">
+                    Showing <strong className="text-zinc-850 dark:text-zinc-200">{filteredProducts.length}</strong> matching models
+                  </span>
+                  
+                  {selectedCategory && (
+                    <span className="text-[10px] font-bold px-3 py-1 bg-[#96bd2d]/10 border border-[#96bd2d]/20 text-[#96bd2d] rounded-full tracking-wider uppercase">
+                      Category: {selectedCategory}
+                    </span>
+                  )}
+                </div>
+
+                {filteredProducts.length === 0 ? (
+                  <div className="text-center py-20 bg-white dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-850 rounded-3xl">
+                    <Sofa className="w-12 h-12 text-zinc-300 mx-auto mb-3" />
+                    <p className="text-sm font-bold text-zinc-800 dark:text-zinc-300">No furniture matching your criteria.</p>
+                    <button
+                      onClick={() => {
+                        setSearchQuery("");
+                        setSelectedCategory(null);
+                        setMaxPrice(600000);
+                      }}
+                      className="text-xs text-amber-600 dark:text-amber-400 font-bold mt-1 hover:underline"
+                    >
+                      Clear All Filters
+                    </button>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {filteredProducts.map((prod) => (
+                      <ProductCard
+                        key={prod.id}
+                        product={prod}
+                        onShowDetails={setSelectedProduct}
+                        onAddToCart={handleAddToCart}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
       </main>
 

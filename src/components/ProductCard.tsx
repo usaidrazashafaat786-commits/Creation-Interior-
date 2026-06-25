@@ -57,7 +57,7 @@ export default function ProductCard({ product, onShowDetails, onAddToCart }: Pro
               Luxury Craft
             </span>
             <span className="text-lg font-black text-amber-600 dark:text-amber-400 font-sans">
-              ₹ {product.price.toLocaleString("en-IN")}
+              Rs. {product.price.toLocaleString("en-IN")}
             </span>
           </div>
 
