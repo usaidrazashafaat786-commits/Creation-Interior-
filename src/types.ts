@@ -36,3 +36,11 @@ export interface UserProfile {
   email: string;
   isAdmin: boolean;
 }
+
+export interface BannerSlide {
+  image: string;
+  title: string;
+  subtitle: string;
+  tagline: string;
+}
+

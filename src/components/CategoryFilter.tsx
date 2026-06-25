@@ -1,21 +1,40 @@
 import React from "react";
-import { Sofa, Bed, Utensils, Armchair, HelpCircle, FileCheck2, TableOfContents } from "lucide-react";
+import { Sofa, Bed, Utensils, Armchair, HelpCircle, FileCheck2, TableOfContents, LayoutGrid } from "lucide-react";
+
+const iconMap: Record<string, any> = {
+  "sofas": Sofa,
+  "sofa": Sofa,
+  "beds": Bed,
+  "bed": Bed,
+  "dining tables": Utensils,
+  "dining table": Utensils,
+  "dining": Utensils,
+  "chairs": Armchair,
+  "chair": Armchair,
+  "wardrobes": TableOfContents,
+  "wardrobe": TableOfContents,
+  "foam products": FileCheck2,
+  "foam": FileCheck2,
+  "mattress": FileCheck2,
+  "mattresses": FileCheck2
+};
+
+function getIconForCategory(catName: string) {
+  const normalized = catName.toLowerCase().trim();
+  if (iconMap[normalized]) return iconMap[normalized];
+  for (const [key, value] of Object.entries(iconMap)) {
+    if (normalized.includes(key)) return value;
+  }
+  return LayoutGrid; // Clean generic backup icon
+}
 
 interface CategoryFilterProps {
   selectedCategory: string | null;
   onSelectCategory: (cat: string | null) => void;
+  categories: string[];
 }
 
-export default function CategoryFilter({ selectedCategory, onSelectCategory }: CategoryFilterProps) {
-  const categories = [
-    { name: "Sofas", icon: Sofa },
-    { name: "Beds", icon: Bed },
-    { name: "Dining Tables", icon: Utensils },
-    { name: "Chairs", icon: Armchair },
-    { name: "Wardrobes", icon: TableOfContents },
-    { name: "Foam Products", icon: FileCheck2 }
-  ];
-
+export default function CategoryFilter({ selectedCategory, onSelectCategory, categories }: CategoryFilterProps) {
   return (
     <div id="category_filter_ribbon" className="space-y-4">
       <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-3">
@@ -49,15 +68,15 @@ export default function CategoryFilter({ selectedCategory, onSelectCategory }: C
         </button>
 
         {/* Dynamic Category Pill Buttons */}
-        {categories.map((cat) => {
-          const IconComponent = cat.icon;
-          const isSelected = selectedCategory === cat.name;
+        {categories.map((catName) => {
+          const IconComponent = getIconForCategory(catName);
+          const isSelected = selectedCategory === catName;
 
           return (
             <button
-              key={cat.name}
-              id={`category_pill_${cat.name.replace(/\s+/g, "_")}`}
-              onClick={() => onSelectCategory(cat.name)}
+              key={catName}
+              id={`category_pill_${catName.replace(/\s+/g, "_")}`}
+              onClick={() => onSelectCategory(catName)}
               className={`flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-2xl text-xs font-bold border transition ${
                 isSelected
                   ? "bg-amber-500 border-amber-500 text-zinc-950 shadow-md scale-[1.02]"
@@ -65,7 +84,7 @@ export default function CategoryFilter({ selectedCategory, onSelectCategory }: C
               }`}
             >
               <IconComponent className={`w-4 h-4 ${isSelected ? "text-zinc-950" : "text-amber-500"}`} />
-              <span>{cat.name}</span>
+              <span>{catName}</span>
             </button>
           );
         })}
@@ -74,3 +93,4 @@ export default function CategoryFilter({ selectedCategory, onSelectCategory }: C
     </div>
   );
 }
+

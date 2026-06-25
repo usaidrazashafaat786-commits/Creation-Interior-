@@ -10,7 +10,7 @@ import AuthView from "./components/AuthView";
 import OrderHistory from "./components/OrderHistory";
 import KotlinExplorer from "./components/KotlinExplorer";
 import { defaultProducts } from "./data/defaultProducts";
-import { Product, CartItem, Order, UserProfile } from "./types";
+import { Product, CartItem, Order, UserProfile, BannerSlide } from "./types";
 import { useRealFirebase, db, auth } from "./services/firebase";
 import { collection, getDocs, addDoc, onSnapshot, doc, setDoc } from "firebase/firestore";
 import { Sofa, Bed, ShieldCheck, HelpCircle, Gift, PhoneCall, Code, Landmark } from "lucide-react";
@@ -82,6 +82,72 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [maxPrice, setMaxPrice] = useState<number>(60000);
+
+  // Dynamic state managers for Admin Customizer
+  const [categories, setCategories] = useState<string[]>(() => {
+    const saved = localStorage.getItem("creation_categories");
+    return saved ? JSON.parse(saved) : ["Sofas", "Beds", "Dining Tables", "Chairs", "Wardrobes", "Foam Products"];
+  });
+
+  const [bannerSlides, setBannerSlides] = useState<BannerSlide[]>(() => {
+    const saved = localStorage.getItem("creation_banner_slides");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [logoUrl, setLogoUrl] = useState<string>(() => {
+    const saved = localStorage.getItem("creation_logo_url");
+    return saved || "";
+  });
+
+  const [adminCreds, setAdminCreds] = useState<{ email: string; pass: string }>(() => {
+    const saved = localStorage.getItem("creation_admin_creds");
+    return saved ? JSON.parse(saved) : { email: "admin@creationinteriors.com", pass: "admin" };
+  });
+
+  // Dynamic Syncer effect hooks
+  useEffect(() => {
+    localStorage.setItem("creation_categories", JSON.stringify(categories));
+  }, [categories]);
+
+  useEffect(() => {
+    localStorage.setItem("creation_banner_slides", JSON.stringify(bannerSlides));
+  }, [bannerSlides]);
+
+  useEffect(() => {
+    localStorage.setItem("creation_logo_url", logoUrl);
+  }, [logoUrl]);
+
+  useEffect(() => {
+    localStorage.setItem("creation_admin_creds", JSON.stringify(adminCreds));
+  }, [adminCreds]);
+
+  // Dynamic configuration handlers
+  const handleAddCategory = (newCat: string) => {
+    setCategories((prev) => [...prev, newCat]);
+  };
+
+  const handleDeleteCategory = (catToDelete: string) => {
+    setCategories((prev) => prev.filter((c) => c !== catToDelete));
+    if (selectedCategory === catToDelete) {
+      setSelectedCategory(null);
+    }
+  };
+
+  const handleAddSlide = (newSlide: BannerSlide) => {
+    setBannerSlides((prev) => [...prev, newSlide]);
+  };
+
+  const handleDeleteSlide = (slideIndex: number) => {
+    setBannerSlides((prev) => prev.filter((_, idx) => idx !== slideIndex));
+  };
+
+  const handleUpdateLogo = (newLogo: string) => {
+    setLogoUrl(newLogo);
+  };
+
+  const handleUpdateAdminCreds = (email: string, pass: string) => {
+    setAdminCreds({ email, pass });
+  };
 
   // Sync caches
   useEffect(() => {
@@ -272,6 +338,7 @@ export default function App() {
         onOpenAdmin={() => setIsAdminOpen(true)}
         activeView={activeView}
         setActiveView={setActiveView}
+        logoUrl={logoUrl}
       />
 
       {activeView === "shop" ? (
@@ -279,7 +346,7 @@ export default function App() {
         <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-9">
           
           {/* Banner Hero Slides */}
-          <BannerSlider />
+          <BannerSlider slides={bannerSlides} />
 
           {/* Quick Info bar */}
           <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -313,7 +380,7 @@ export default function App() {
           </section>
 
           {/* Category Filter ribbons */}
-          <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} />
+          <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} categories={categories} />
 
           {/* Catalog grid and filters decks */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -459,6 +526,16 @@ export default function App() {
         onAddProduct={handleAddProduct}
         onUpdateProduct={handleUpdateProduct}
         onDeleteProduct={handleDeleteProduct}
+        categories={categories}
+        onAddCategory={handleAddCategory}
+        onDeleteCategory={handleDeleteCategory}
+        slides={bannerSlides}
+        onAddSlide={handleAddSlide}
+        onDeleteSlide={handleDeleteSlide}
+        logoUrl={logoUrl}
+        onUpdateLogo={handleUpdateLogo}
+        adminCreds={adminCreds}
+        onUpdateAdminCreds={handleUpdateAdminCreds}
       />
 
       {/* Account Login Registration Views */}
@@ -478,6 +555,12 @@ export default function App() {
           <p className="text-[10px] text-zinc-400">
             Crafted for Android & Web platform. Access code explorer from top right menu to view/copy Jetpack Compose screens.
           </p>
+          <button
+            onClick={() => setIsAdminOpen(true)}
+            className="mt-3 inline-flex items-center gap-1.5 px-4.5 py-2.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-bold text-[11px] transition cursor-pointer"
+          >
+            🛠️ Control Board Panel
+          </button>
         </div>
       </footer>
 

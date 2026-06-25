@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { BannerSlide } from "../types";
 
-const slides = [
+const defaultSlides = [
   {
     image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&auto=format&fit=crop&q=80",
     title: "Sculpting Luxury Interiors",
@@ -23,23 +24,37 @@ const slides = [
   }
 ];
 
-export default function BannerSlider() {
+interface BannerSliderProps {
+  slides?: BannerSlide[];
+}
+
+export default function BannerSlider({ slides: propSlides }: BannerSliderProps) {
+  const slides = propSlides && propSlides.length > 0 ? propSlides : defaultSlides;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    setIndex(0);
+  }, [slides.length]);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const handlePrev = () => {
+    if (slides.length <= 1) return;
     setIndex((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const handleNext = () => {
+    if (slides.length <= 1) return;
     setIndex((prev) => (prev + 1) % slides.length);
   };
+
+  if (slides.length === 0) return null;
 
   return (
     <div id="hero_slider_container" className="relative w-full h-[280px] md:h-[400px] overflow-hidden rounded-2xl group border border-zinc-200 dark:border-zinc-800 shadow-lg">

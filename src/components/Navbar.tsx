@@ -17,6 +17,7 @@ interface NavbarProps {
   onOpenAdmin: () => void;
   activeView: "shop" | "codebase";
   setActiveView: (view: "shop" | "codebase") => void;
+  logoUrl?: string;
 }
 
 export default function Navbar({
@@ -30,8 +31,11 @@ export default function Navbar({
   setDarkMode,
   onOpenAdmin,
   activeView,
-  setActiveView
+  setActiveView,
+  logoUrl
 }: NavbarProps) {
+  const finalLogo = logoUrl || logoImg;
+
   return (
     <nav id="app_navbar" className="sticky top-0 bg-white/95 dark:bg-zinc-950/95 border-b border-zinc-150 dark:border-zinc-850 z-40 transition-colors backdrop-blur-[8px]">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,8 +44,9 @@ export default function Navbar({
           {/* Logo Brand Frame */}
           <div className="flex items-center gap-3 cursor-pointer flex-shrink-0" onClick={() => setActiveView("shop")}>
             <div className="w-11 h-11 bg-[#1A0F1A] rounded-xl flex items-center justify-center overflow-hidden border border-[#D4AF37]/30 shadow-md">
-              <img src={logoImg} alt="Creation Interiors Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src={finalLogo} alt="Creation Interiors Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
+
             <div>
               <h1 className="text-lg font-serif font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-none">
                 Creation Interiors
