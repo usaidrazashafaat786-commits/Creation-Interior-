@@ -3,8 +3,10 @@ import Navbar from "./components/Navbar";
 import BannerSlider from "./components/BannerSlider";
 import CategoryFilter from "./components/CategoryFilter";
 import ProductCard from "./components/ProductCard";
+import CategorySidebar from "./components/CategorySidebar";
 import ProductDetailModal from "./components/ProductDetailModal";
 import CartSidebar from "./components/CartSidebar";
+import WishlistSidebar from "./components/WishlistSidebar";
 import AdminPanel from "./components/AdminPanel";
 import AuthView from "./components/AuthView";
 import OrderHistory from "./components/OrderHistory";
@@ -78,6 +80,12 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [wishlist, setWishlist] = useState<string[]>(() => {
+    const saved = localStorage.getItem("creation_wishlist");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [maxPrice, setMaxPrice] = useState<number>(600000);
@@ -119,6 +127,24 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("creation_admin_creds", JSON.stringify(adminCreds));
   }, [adminCreds]);
+
+  useEffect(() => {
+    localStorage.setItem("creation_wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
+
+  const handleToggleWishlist = (prod: Product, e?: any) => {
+    if (e && e.stopPropagation) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    setWishlist((prev) => {
+      if (prev.includes(prod.id)) {
+        return prev.filter((id) => id !== prod.id);
+      } else {
+        return [...prev, prod.id];
+      }
+    });
+  };
 
   // Dynamic configuration handlers
   const handleAddCategory = (newCat: string) => {
@@ -177,6 +203,18 @@ export default function App() {
       localStorage.removeItem("creation_user");
     }
   }, [user]);
+
+  // Handle deep-linking share URL parameters (?product=id) on load
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const prodId = params.get("product");
+    if (prodId && products.length > 0) {
+      const match = products.find((p) => String(p.id) === String(prodId));
+      if (match) {
+        setSelectedProduct(match);
+      }
+    }
+  }, [products]);
 
   // Firebase Real Integration checks
   useEffect(() => {
@@ -330,11 +368,14 @@ export default function App() {
         onOpenAuth={() => setIsAuthOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
         cartCount={cart.reduce((s, c) => s + c.quantity, 0)}
+        onOpenWishlist={() => setIsWishlistOpen(true)}
+        wishlistCount={wishlist.length}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         darkMode={darkMode}
         setDarkMode={setDarkMode}
         onOpenAdmin={() => setIsAdminOpen(true)}
+        onOpenCategoryMenu={() => setIsCategoryMenuOpen(true)}
         activeView={activeView}
         setActiveView={setActiveView}
         logoUrl={logoUrl}
@@ -387,6 +428,87 @@ export default function App() {
           /* RENDER THE COMPETITOR'S REPLICA LANDING PAGE */
           <div className="space-y-20">
             
+            {/* Popular Categories Preview Grid */}
+            <section className="space-y-8">
+              <div className="text-center space-y-2">
+                <span className="text-[9px] font-black tracking-widest text-[#96bd2d] bg-[#96bd2d]/10 border border-[#96bd2d]/20 px-3 py-1 rounded-full uppercase inline-block">
+                  EXPLORE OUR SHOWROOM
+                </span>
+                <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100 font-medium">
+                  Popular Categories
+                </h2>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
+                  Click a collection to filter our dynamic showcase and configure your bespoke custom layout plans.
+                </p>
+              </div>
+
+              {/* Grid of clickable category cards */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                {[
+                  {
+                    name: "Bedroom Furniture",
+                    tagline: "Royal Master Suites",
+                    badge: "Trending",
+                    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&auto=format&fit=crop&q=80",
+                  },
+                  {
+                    name: "Dining Furniture",
+                    tagline: "Solid Teak & Quartz",
+                    badge: "Artisanal",
+                    image: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=400&auto=format&fit=crop&q=80",
+                  },
+                  {
+                    name: "Chairs",
+                    tagline: "Ergonomic Loungers",
+                    badge: "Ergonomic",
+                    image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&auto=format&fit=crop&q=80",
+                  },
+                  {
+                    name: "Wardrobes",
+                    tagline: "Modern Fitted Closets",
+                    badge: "Bespoke",
+                    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&auto=format&fit=crop&q=80",
+                  },
+                  {
+                    name: "Foam Products",
+                    tagline: "Orthopedic Support",
+                    badge: "Wellness",
+                    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&auto=format&fit=crop&q=80",
+                  }
+                ].map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => setSelectedCategory(item.name)}
+                    className="group relative flex flex-col justify-end overflow-hidden rounded-2xl aspect-[4/5] bg-zinc-950 border border-zinc-200/10 hover:border-[#96bd2d]/50 transition-all duration-500 text-left cursor-pointer outline-none shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:scale-[1.03] active:scale-[0.98]"
+                  >
+                    {/* Background image overlay */}
+                    <div className="absolute inset-0 z-0 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-700 ease-out brightness-[0.7] group-hover:brightness-[0.45]"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent group-hover:via-black/70 transition-all duration-500" />
+                    </div>
+
+                    {/* Content inside card */}
+                    <div className="relative z-10 p-4 space-y-1.5 transform group-hover:translate-y-[-2px] transition-transform duration-500">
+                      <span className="inline-block text-[8px] font-black tracking-widest bg-[#96bd2d] text-white px-2 py-0.5 rounded-md uppercase shadow-sm">
+                        {item.badge}
+                      </span>
+                      <h4 className="text-xs md:text-sm font-serif font-bold text-white tracking-tight group-hover:text-[#96bd2d] transition-colors duration-300 leading-tight">
+                        {item.name}
+                      </h4>
+                      <p className="text-[10px] text-zinc-300 group-hover:text-white transition-colors duration-300 font-sans tracking-wide truncate">
+                        {item.tagline}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </section>
+
             {/* 1. Bedroom Furniture Section */}
             <section className="space-y-8">
               <div className="text-center space-y-4">
@@ -414,6 +536,8 @@ export default function App() {
                       product={prod}
                       onShowDetails={setSelectedProduct}
                       onAddToCart={handleAddToCart}
+                      isWishlisted={wishlist.includes(prod.id)}
+                      onToggleWishlist={handleToggleWishlist}
                     />
                   ))}
               </div>
@@ -490,6 +614,8 @@ export default function App() {
                       product={prod}
                       onShowDetails={setSelectedProduct}
                       onAddToCart={handleAddToCart}
+                      isWishlisted={wishlist.includes(prod.id)}
+                      onToggleWishlist={handleToggleWishlist}
                     />
                   ))}
               </div>
@@ -577,6 +703,8 @@ export default function App() {
                         product={prod}
                         onShowDetails={setSelectedProduct}
                         onAddToCart={handleAddToCart}
+                        isWishlisted={wishlist.includes(prod.id)}
+                        onToggleWishlist={handleToggleWishlist}
                       />
                     ))}
                   </div>
@@ -681,6 +809,8 @@ export default function App() {
                         product={prod}
                         onShowDetails={setSelectedProduct}
                         onAddToCart={handleAddToCart}
+                        isWishlisted={wishlist.includes(prod.id)}
+                        onToggleWishlist={handleToggleWishlist}
                       />
                     ))}
                   </div>
@@ -701,6 +831,25 @@ export default function App() {
         onRemoveItem={handleRemoveItem}
         onPlaceOrder={handlePlaceOrder}
         userEmail={user?.email}
+      />
+
+      {/* Categories Selection Sidebar Drawer */}
+      <CategorySidebar
+        isOpen={isCategoryMenuOpen}
+        onClose={() => setIsCategoryMenuOpen(false)}
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onSelectCategory={setSelectedCategory}
+        onOpenAdmin={() => setIsAdminOpen(true)}
+      />
+
+      {/* Wishlist Sidebar Drawer */}
+      <WishlistSidebar
+        isOpen={isWishlistOpen}
+        onClose={() => setIsWishlistOpen(false)}
+        wishlistItems={products.filter((p) => wishlist.includes(p.id))}
+        onToggleWishlist={handleToggleWishlist}
+        onAddToCart={handleAddToCart}
       />
 
       {/* Product Detail Spec Modal */}

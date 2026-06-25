@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ShoppingBag, Search, LogIn, User, ShieldCheck, Menu, X } from "lucide-react";
+import { ShoppingBag, Search, LogIn, User, ShieldCheck, Menu, X, Heart } from "lucide-react";
 import { UserProfile } from "../types";
 import ThemeToggle from "./ThemeToggle";
 
@@ -8,11 +8,14 @@ interface NavbarProps {
   onOpenAuth: () => void;
   onOpenCart: () => void;
   cartCount: number;
+  onOpenWishlist: () => void;
+  wishlistCount: number;
   searchQuery: string;
   setSearchQuery: (val: string) => void;
   darkMode: boolean;
   setDarkMode: (val: boolean) => void;
   onOpenAdmin: () => void;
+  onOpenCategoryMenu: () => void;
   activeView: "shop" | "codebase";
   setActiveView: (view: "shop" | "codebase") => void;
   logoUrl?: string;
@@ -23,11 +26,14 @@ export default function Navbar({
   onOpenAuth,
   onOpenCart,
   cartCount,
+  onOpenWishlist,
+  wishlistCount,
   searchQuery,
   setSearchQuery,
   darkMode,
   setDarkMode,
   onOpenAdmin,
+  onOpenCategoryMenu,
   activeView,
   setActiveView,
   logoUrl
@@ -49,9 +55,9 @@ export default function Navbar({
             {/* Left Hand: Hamburger Menu Toggle Button */}
             <div className="flex items-center gap-3">
               <button
-                onClick={onOpenAdmin}
+                onClick={onOpenCategoryMenu}
                 className="p-2 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full transition outline-none"
-                title="Open Storefront Control Board"
+                title="Open Furniture Categories Menu"
               >
                 <Menu className="w-6 h-6 stroke-[1.5]" />
               </button>
@@ -122,6 +128,20 @@ export default function Navbar({
                 <User className="w-5 h-5 stroke-[1.5]" />
                 {user && (
                   <span className="absolute bottom-1 right-1 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white dark:border-zinc-950" />
+                )}
+              </button>
+
+              {/* Wishlist Button with Indicator */}
+              <button
+                onClick={onOpenWishlist}
+                className="p-2 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full transition outline-none relative"
+                title="Your Wishlist"
+              >
+                <Heart className={`w-5 h-5 stroke-[1.5] ${wishlistCount > 0 ? "fill-red-500 text-red-500 stroke-red-500" : ""}`} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-white font-extrabold text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm">
+                    {wishlistCount}
+                  </span>
                 )}
               </button>
 
