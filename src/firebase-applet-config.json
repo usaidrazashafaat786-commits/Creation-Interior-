@@ -1,0 +1,10 @@
+{
+  "apiKey": "MOCK_API_KEY_FOR_LOCAL_BUILD",
+  "authDomain": "creation-interiors.firebaseapp.com",
+  "projectId": "creation-interiors",
+  "storageBucket": "creation-interiors.appspot.com",
+  "messagingSenderId": "123456789",
+  "appId": "1:123456789:web:abcdef123456",
+  "measurementId": "G-MOCK123456",
+  "firestoreDatabaseId": "(default)"
+}

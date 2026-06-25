@@ -1,0 +1,110 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Global safety net default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Primitive declarations
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && (
+        request.auth.token.email_verified == true || 
+        request.auth.token.email == 'cpro34023@gmail.com'
+      );
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'cpro34023@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Entity validation helpers
+    function isValidProduct(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.description is string && data.description.size() <= 1000 &&
+             data.price is number && data.price >= 0.0 && data.price <= 1000000.0 &&
+             data.category is string && data.category.size() <= 50 &&
+             data.imageUrl is string && data.imageUrl.size() <= 1000;
+    }
+
+    function isValidOrder(data) {
+      return data.userId == request.auth.uid &&
+             data.userEmail is string && data.userEmail.size() <= 120 &&
+             data.totalPrice is number && data.totalPrice >= 0.0 &&
+             data.status in ['Pending', 'Dispatched', 'Delivered', 'Cancelled'] &&
+             data.deliveryPhone is string && data.deliveryPhone.size() >= 5 && data.deliveryPhone.size() <= 30 &&
+             data.deliveryAddress is string && data.deliveryAddress.size() >= 5 && data.deliveryAddress.size() <= 500;
+    }
+
+    function isValidUser(data) {
+      return data.uid == request.auth.uid &&
+             data.email is string && data.email.size() <= 120 &&
+             (data.isAdmin == false || !data.keys().hasAll(['isAdmin']));
+    }
+
+    // Match blocks
+
+    // -- PRODUCTS COLLECTION --
+    match /products/{productId} {
+      allow read: if true; // Browsing allowed without signing in
+      allow create: if isAdmin() && isEmailVerified() && isValidId(productId) && isValidProduct(incoming());
+      allow update: if (isAdmin() && isEmailVerified() && isValidId(productId) && isValidProduct(incoming())) ||
+                    (
+                      // Custom non-destructive lock overrides or general update gates
+                      isAdmin() && isEmailVerified() && incoming().diff(existing()).affectedKeys().hasOnly(['isAvailable', 'price'])
+                    );
+      allow delete: if isAdmin() && isEmailVerified();
+    }
+
+    // -- ORDERS COLLECTION --
+    match /orders/{orderId} {
+      allow list: if isSignedIn() && (
+                    isAdmin() || 
+                    resource.data.userId == request.auth.uid
+                  );
+      allow get: if isSignedIn() && (
+                    isAdmin() || 
+                    resource.data.userId == request.auth.uid
+                  );
+      allow create: if isSignedIn() && isEmailVerified() && isValidId(orderId) && isValidOrder(incoming());
+      allow update: if isSignedIn() && isEmailVerified() && (
+                    // Regular users cannot modify orders, only admins can change the fulfillment STATUS
+                    isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly(['status'])
+                  );
+      allow delete: if isAdmin() && isEmailVerified();
+    }
+
+    // -- USERS COLLECTION --
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow create, update: if isSignedIn() && request.auth.uid == userId && isValidUser(incoming());
+      allow delete: if isAdmin() && isEmailVerified();
+    }
+
+    // -- ADMINS WHITE-LIST COLLECTION --
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin() && isEmailVerified() && isValidId(adminId);
+    }
+  }
+}

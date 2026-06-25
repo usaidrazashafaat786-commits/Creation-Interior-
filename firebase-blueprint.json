@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Furniture Product",
+      "description": "Premium furniture unit available in the catalog list.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Auto-assigned document ID." },
+        "name": { "type": "string", "description": "The brand title of the furniture work." },
+        "description": { "type": "string", "description": "Detailed specs, wood type, finishes." },
+        "price": { "type": "number", "description": "Price in Rupees (₹)." },
+        "category": { "type": "string", "description": "The category classification." },
+        "imageUrl": { "type": "string", "description": "High resolution web photo link." },
+        "isAvailable": { "type": "boolean", "description": "In stock status indicator." }
+      },
+      "required": ["name", "price", "category", "imageUrl"]
+    },
+    "Order": {
+      "title": "Customer Order",
+      "description": "Furniture purchase orders registered to trigger WhatsApp dispatch details.",
+      "type": "object",
+      "properties": {
+        "orderId": { "type": "string", "description": "Unique assigned UUID." },
+        "userId": { "type": "string", "description": "Target active authenticated customer userId." },
+        "userEmail": { "type": "string", "description": "Registered credentials email." },
+        "totalPrice": { "type": "number", "description": "Total order aggregate cost in ₹." },
+        "timestamp": { "type": "integer", "description": "System server timestamp representation." },
+        "status": { "type": "string", "description": "The fulfillment process: Pending, Dispatched, Delivered." },
+        "deliveryPhone": { "type": "string", "description": "WhatsApp contact number." },
+        "deliveryAddress": { "type": "string", "description": "The physical delivery address." }
+      },
+      "required": ["userId", "userEmail", "totalPrice", "timestamp", "status", "deliveryPhone", "deliveryAddress"]
+    },
+    "User": {
+      "title": "User Register",
+      "description": "User registration record mapped securely inside auth callbacks.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "isAdmin": { "type": "boolean" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Admin": {
+      "title": "Privileged Admin",
+      "description": "Trusted admin whitelist records setting managerial clearance.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" }
+      },
+      "required": ["email"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Entire storewide furniture catalog."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Records of purchases. Users read their own, admin reads all."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Client profile parameters."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "List of user-ids holding management rights."
+    }
+  }
+}

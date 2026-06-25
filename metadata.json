@@ -1,0 +1,6 @@
+{
+  "name": "Creation Interiors",
+  "description": "A premium furniture e-commerce experience showcasing product catalog, cart manager, WhatsApp business integration, admin dashboard, and full Jetpack Compose Kotlin codebase explorer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
