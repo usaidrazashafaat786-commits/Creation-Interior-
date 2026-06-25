@@ -285,11 +285,11 @@ export default function AdminPanel({
 
   return (
     <div id="admin_panel_overlay" className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-brand-purple border border-[#D4AF37]/20 rounded-3xl w-full max-w-5xl h-[90vh] overflow-hidden shadow-2xl relative flex flex-col">
+      <div className="bg-white dark:bg-brand-purple border border-[#B79041]/20 rounded-3xl w-full max-w-5xl h-[90vh] overflow-hidden shadow-2xl relative flex flex-col">
         
         {/* Guarded Admin Login Screen */}
         {!isAuthenticated ? (
-          <div className="flex-1 flex flex-col justify-center items-center p-8 bg-gradient-to-b from-[#1A0F1A] to-[#0d070d] text-white overflow-y-auto">
+          <div className="flex-1 flex flex-col justify-center items-center p-8 bg-gradient-to-b from-[#11010E] to-[#050004] text-white overflow-y-auto">
             <button
               onClick={onClose}
               className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 text-zinc-400 hover:text-white transition"
@@ -300,7 +300,7 @@ export default function AdminPanel({
 
             <div className="w-full max-w-md bg-white/5 border border-white/10 p-8 rounded-3xl shadow-xl backdrop-blur-md space-y-6 my-4">
               <div className="text-center space-y-2">
-                <div className="w-14 h-14 bg-gradient-to-tr from-[#D4AF37] to-[#e5c358] rounded-2xl flex items-center justify-center text-[#1A0F1A] font-bold text-2xl mx-auto shadow-lg shadow-[#D4AF37]/15">
+                <div className="w-14 h-14 bg-gradient-to-tr from-[#B79041] to-[#d2b166] rounded-2xl flex items-center justify-center text-[#11010E] font-bold text-2xl mx-auto shadow-lg shadow-[#B79041]/15">
                   {isSetupMode ? <Settings className="w-6 h-6" /> : <Lock className="w-6 h-6" />}
                 </div>
                 <h2 className="text-2xl font-serif font-black tracking-tight text-white">
@@ -324,14 +324,14 @@ export default function AdminPanel({
                 <button
                   type="button"
                   onClick={() => { setIsSetupMode(false); setLoginError(""); }}
-                  className={`flex-1 pb-3 text-center font-bold tracking-wider uppercase border-b-2 ${!isSetupMode ? 'border-[#D4AF37] text-[#D4AF37]' : 'border-transparent text-zinc-400 hover:text-zinc-200'}`}
+                  className={`flex-1 pb-3 text-center font-bold tracking-wider uppercase border-b-2 ${!isSetupMode ? 'border-[#B79041] text-[#B79041]' : 'border-transparent text-zinc-400 hover:text-zinc-200'}`}
                 >
                   Unlock Login
                 </button>
                 <button
                   type="button"
                   onClick={() => { setIsSetupMode(true); setLoginError(""); }}
-                  className={`flex-1 pb-3 text-center font-bold tracking-wider uppercase border-b-2 ${isSetupMode ? 'border-[#D4AF37] text-[#D4AF37]' : 'border-transparent text-zinc-400 hover:text-zinc-200'}`}
+                  className={`flex-1 pb-3 text-center font-bold tracking-wider uppercase border-b-2 ${isSetupMode ? 'border-[#B79041] text-[#B79041]' : 'border-transparent text-zinc-400 hover:text-zinc-200'}`}
                 >
                   First-time Setup / Reset
                 </button>
@@ -350,7 +350,7 @@ export default function AdminPanel({
                       placeholder="e.g. admin@creationinteriors.com"
                       value={loginEmail}
                       onChange={(e) => setLoginEmail(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#D4AF37] text-xs"
+                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#B79041] text-xs"
                     />
                   </div>
 
@@ -364,13 +364,13 @@ export default function AdminPanel({
                       placeholder="••••••••"
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#D4AF37] text-xs"
+                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#B79041] text-xs"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-gradient-to-r from-[#D4AF37] to-[#e5c358] hover:from-[#e5c358] hover:to-[#D4AF37] text-zinc-950 font-black rounded-xl transition shadow-lg shadow-[#D4AF37]/20 text-xs tracking-wider uppercase mt-2 cursor-pointer"
+                    className="w-full py-3.5 bg-gradient-to-r from-[#B79041] to-[#d2b166] hover:from-[#d2b166] hover:to-[#B79041] text-zinc-950 font-black rounded-xl transition shadow-lg shadow-[#B79041]/20 text-xs tracking-wider uppercase mt-2 cursor-pointer"
                   >
                     Unlock Admin Console
                   </button>
@@ -388,7 +388,7 @@ export default function AdminPanel({
                       placeholder="e.g. usaidrazashafaat786@gmail.com"
                       value={setupEmail}
                       onChange={(e) => setSetupEmail(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#D4AF37] text-xs"
+                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#B79041] text-xs"
                     />
                   </div>
 
@@ -402,7 +402,7 @@ export default function AdminPanel({
                       placeholder="Set your password"
                       value={setupPassword}
                       onChange={(e) => setSetupPassword(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#D4AF37] text-xs"
+                      className="w-full px-4 py-3 bg-[#130b13] border border-white/10 rounded-xl text-white outline-none focus:ring-2 focus:ring-[#B79041] text-xs"
                     />
                   </div>
 
@@ -430,7 +430,7 @@ export default function AdminPanel({
             {/* Header Toolbar */}
             <div className="p-6 md:px-9 border-b border-zinc-150 dark:border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-50 dark:bg-brand-purple">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37]">
+                <div className="w-11 h-11 rounded-xl bg-[#B79041]/10 border border-[#B79041]/30 flex items-center justify-center text-[#B79041]">
                   <Landmark className="w-6 h-6" />
                 </div>
                 <div>
@@ -468,55 +468,55 @@ export default function AdminPanel({
                 onClick={() => setActiveTab("products")}
                 className={`py-3.5 px-4 font-bold text-xs tracking-wide flex items-center gap-2 border-b-2 transition-all ${
                   activeTab === "products"
-                    ? "border-[#D4AF37] text-zinc-900 dark:text-zinc-50 font-black"
+                    ? "border-[#B79041] text-zinc-900 dark:text-zinc-50 font-black"
                     : "border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
                 }`}
               >
-                <FolderKanban className="w-4 h-4 text-[#D4AF37]" />
+                <FolderKanban className="w-4 h-4 text-[#B79041]" />
                 Manage Furniture ({products.length})
               </button>
               <button
                 onClick={() => setActiveTab("categories")}
                 className={`py-3.5 px-4 font-bold text-xs tracking-wide flex items-center gap-2 border-b-2 transition-all ${
                   activeTab === "categories"
-                    ? "border-[#D4AF37] text-zinc-900 dark:text-zinc-50 font-black"
+                    ? "border-[#B79041] text-zinc-900 dark:text-zinc-50 font-black"
                     : "border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
                 }`}
               >
-                <Layers className="w-4 h-4 text-[#D4AF37]" />
+                <Layers className="w-4 h-4 text-[#B79041]" />
                 Store Categories ({categories.length})
               </button>
               <button
                 onClick={() => setActiveTab("banners")}
                 className={`py-3.5 px-4 font-bold text-xs tracking-wide flex items-center gap-2 border-b-2 transition-all ${
                   activeTab === "banners"
-                    ? "border-[#D4AF37] text-zinc-900 dark:text-zinc-50 font-black"
+                    ? "border-[#B79041] text-zinc-900 dark:text-zinc-50 font-black"
                     : "border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
                 }`}
               >
-                <Image className="w-4 h-4 text-[#D4AF37]" />
+                <Image className="w-4 h-4 text-[#B79041]" />
                 Banners & Slides ({slides.length})
               </button>
               <button
                 onClick={() => setActiveTab("codebase")}
                 className={`py-3.5 px-4 font-bold text-xs tracking-wide flex items-center gap-2 border-b-2 transition-all ${
                   activeTab === "codebase"
-                    ? "border-[#D4AF37] text-zinc-900 dark:text-zinc-50 font-black"
+                    ? "border-[#B79041] text-zinc-900 dark:text-zinc-50 font-black"
                     : "border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
                 }`}
               >
-                <Code className="w-4 h-4 text-[#D4AF37]" />
+                <Code className="w-4 h-4 text-[#B79041]" />
                 Android Code Explorer 🛠️
               </button>
               <button
                 onClick={() => setActiveTab("settings")}
                 className={`py-3.5 px-4 font-bold text-xs tracking-wide flex items-center gap-2 border-b-2 transition-all ${
                   activeTab === "settings"
-                    ? "border-[#D4AF37] text-zinc-900 dark:text-zinc-50 font-black"
+                    ? "border-[#B79041] text-zinc-900 dark:text-zinc-50 font-black"
                     : "border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
                 }`}
               >
-                <Settings className="w-4 h-4 text-[#D4AF37]" />
+                <Settings className="w-4 h-4 text-[#B79041]" />
                 Identity & Access settings
               </button>
             </div>
@@ -755,12 +755,12 @@ export default function AdminPanel({
                       </div>
                     </div>
 
-                    <div className="bg-[#D4AF37]/5 border border-[#D4AF37]/25 text-zinc-800 dark:text-zinc-200 p-4 rounded-2xl text-[11px] mt-4 flex gap-3 items-center">
-                      <div className="w-7 h-7 rounded-full bg-[#D4AF37]/20 flex items-center justify-center text-amber-600 font-bold flex-shrink-0 text-xs">
+                    <div className="bg-[#B79041]/5 border border-[#B79041]/25 text-zinc-800 dark:text-zinc-200 p-4 rounded-2xl text-[11px] mt-4 flex gap-3 items-center">
+                      <div className="w-7 h-7 rounded-full bg-[#B79041]/20 flex items-center justify-center text-amber-600 font-bold flex-shrink-0 text-xs">
                         i
                       </div>
                       <div>
-                        <p className="font-semibold text-zinc-900 dark:text-[#D4AF37]">Dynamic Catalog Refresher</p>
+                        <p className="font-semibold text-zinc-900 dark:text-[#B79041]">Dynamic Catalog Refresher</p>
                         <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">
                           Adding, updating, or deleting items instantly updates client filters, search indices, and order carts.
                         </p>
@@ -776,7 +776,7 @@ export default function AdminPanel({
                 <div className="p-6 md:p-9 space-y-6 max-w-3xl mx-auto">
                   <div className="space-y-1">
                     <h3 className="text-lg font-serif font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                      <Layers className="w-5 h-5 text-[#D4AF37]" />
+                      <Layers className="w-5 h-5 text-[#B79041]" />
                       Custom Category Configuration
                     </h3>
                     <p className="text-xs text-zinc-400">
@@ -816,7 +816,7 @@ export default function AdminPanel({
                           className="flex items-center justify-between p-3.5 bg-zinc-50 dark:bg-[#130b13] border border-zinc-150 dark:border-zinc-800 rounded-xl text-xs"
                         >
                           <span className="font-bold text-zinc-800 dark:text-zinc-100 flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-[#D4AF37]"></span>
+                            <span className="w-2 h-2 rounded-full bg-[#B79041]"></span>
                             {cat}
                           </span>
                           <button
@@ -945,7 +945,7 @@ export default function AdminPanel({
                               <div>
                                 <h5 className="font-bold text-zinc-800 dark:text-zinc-100 line-clamp-1">{s.title}</h5>
                                 <p className="text-[10px] text-zinc-400 mt-0.5 line-clamp-1">
-                                  Tag: <b className="text-[#D4AF37]">{s.tagline}</b> | Sub: <i>{s.subtitle}</i>
+                                  Tag: <b className="text-[#B79041]">{s.tagline}</b> | Sub: <i>{s.subtitle}</i>
                                 </p>
                               </div>
                               <div className="text-right">
@@ -970,10 +970,10 @@ export default function AdminPanel({
               {/* TAB 3.5: ANDROID BLUEPRINT CODEBASE EXPLORER */}
               {activeTab === "codebase" && (
                 <div className="p-6 md:p-8 space-y-4 max-w-6xl mx-auto">
-                  <div className="bg-[#D4AF37]/5 p-4 rounded-2xl border border-[#D4AF37]/20 text-xs text-zinc-400 leading-relaxed flex items-center gap-3.5 mb-2">
+                  <div className="bg-[#B79041]/5 p-4 rounded-2xl border border-[#B79041]/20 text-xs text-zinc-400 leading-relaxed flex items-center gap-3.5 mb-2">
                     <span className="text-xl">📱</span>
                     <div>
-                      <h4 className="font-bold text-zinc-900 dark:text-[#D4AF37]">Android Companion Application Codebase</h4>
+                      <h4 className="font-bold text-zinc-900 dark:text-[#B79041]">Android Companion Application Codebase</h4>
                       <p>Below you can browse, study, copy, and export Jetpack Compose implementation files directly to build your native mobile experience.</p>
                     </div>
                   </div>
@@ -989,7 +989,7 @@ export default function AdminPanel({
                   <div className="space-y-4 bg-zinc-550/10 dark:bg-[#130b13]/40 p-6 rounded-3xl border border-zinc-150 dark:border-zinc-800/60 shadow-sm">
                     <div className="space-y-1">
                       <h3 className="text-base font-serif font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                        <Image className="w-4 h-4 text-[#D4AF37]" />
+                        <Image className="w-4 h-4 text-[#B79041]" />
                         Storefront Brand Logo Configuration
                       </h3>
                       <p className="text-[11px] text-zinc-400">
@@ -1000,7 +1000,7 @@ export default function AdminPanel({
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                       <div className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[#0d070d] border border-zinc-200 dark:border-zinc-800 rounded-2xl h-32">
                         <span className="text-[9px] font-bold text-zinc-400 uppercase mb-2 tracking-widest">Active Logo</span>
-                        <div className="w-16 h-16 rounded-xl bg-brand-purple flex items-center justify-center border border-[#D4AF37]/30 shadow-md overflow-hidden">
+                        <div className="w-16 h-16 rounded-xl bg-brand-purple flex items-center justify-center border border-[#B79041]/30 shadow-md overflow-hidden">
                           <img src={logoUrl} alt="Storefront Logo" className="w-full h-full object-cover" />
                         </div>
                       </div>
@@ -1008,7 +1008,7 @@ export default function AdminPanel({
                       <div className="md:col-span-2 space-y-3.5 text-xs">
                         <div className="space-y-1">
                           <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Logo PNG File Upload</label>
-                          <label className="w-full px-4 py-3 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-[#D4AF37] rounded-xl flex items-center justify-center cursor-pointer transition text-xs font-black gap-2 text-center">
+                          <label className="w-full px-4 py-3 bg-[#B79041]/10 hover:bg-[#B79041]/15 border border-[#B79041]/30 text-[#B79041] rounded-xl flex items-center justify-center cursor-pointer transition text-xs font-black gap-2 text-center">
                             <Upload className="w-4 h-4" />
                             Select brand PNG/JPEG Logo
                             <input
@@ -1038,7 +1038,7 @@ export default function AdminPanel({
                   <div className="space-y-4 bg-zinc-550/10 dark:bg-[#130b13]/40 p-6 rounded-3xl border border-zinc-150 dark:border-zinc-800/60 shadow-sm">
                     <div className="space-y-1">
                       <h3 className="text-base font-serif font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                        <KeyRound className="w-4 h-4 text-[#D4AF37]" />
+                        <KeyRound className="w-4 h-4 text-[#B79041]" />
                         Secure Administrator Credentials (Single User Access)
                       </h3>
                       <p className="text-[11px] text-zinc-400">
@@ -1085,7 +1085,7 @@ export default function AdminPanel({
 
                       <button
                         type="submit"
-                        className="px-6 py-3 bg-[#D4AF37] hover:bg-amber-600 text-zinc-950 font-black rounded-xl transition text-xs uppercase tracking-wider flex items-center gap-1.5 ml-auto"
+                        className="px-6 py-3 bg-[#B79041] hover:bg-amber-600 text-zinc-950 font-black rounded-xl transition text-xs uppercase tracking-wider flex items-center gap-1.5 ml-auto"
                       >
                         <Lock className="w-3.5 h-3.5" />
                         Update Manager Access Keys

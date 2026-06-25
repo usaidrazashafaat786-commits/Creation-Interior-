@@ -43,7 +43,7 @@ export default function Navbar({
   return (
     <div id="navigation_group" className="sticky top-0 z-40 w-full">
       {/* Competitor-style Lime/Olive Announcement Bar */}
-      <div className="w-full bg-[#96bd2d] text-white text-[11px] font-bold tracking-wide py-2 text-center shadow-sm select-none">
+      <div className="w-full bg-[#B79041] text-white text-[11px] font-bold tracking-wide py-2 text-center shadow-sm select-none">
         Delivery to your doorstep across Pakistan! 🇵🇰
       </div>
 
@@ -74,7 +74,7 @@ export default function Navbar({
               )}
             </div>
 
-            {/* Center: Beautiful Serif Logo Typography mirroring "The Roshaan's" */}
+            {/* Center: Beautiful Logo Image or Serif Logo Typography */}
             <div 
               className="flex flex-col items-center justify-center cursor-pointer select-none text-center"
               onClick={() => {
@@ -82,15 +82,26 @@ export default function Navbar({
                 setActiveView("shop");
               }}
             >
-              <div className="flex items-center gap-1 bg-[#96bd2d]/10 px-2 py-0.5 rounded-md mb-0.5 border border-[#96bd2d]/25">
-                <span className="text-[9px] font-black tracking-widest text-[#96bd2d] uppercase">CREATION</span>
-              </div>
-              <h1 className="text-xl md:text-2xl font-serif font-black tracking-tight text-zinc-900 dark:text-zinc-50 leading-none">
-                Interiors
-              </h1>
-              <span className="text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest block mt-1">
-                Modern Living
-              </span>
+              {logoUrl ? (
+                <img 
+                  src={logoUrl} 
+                  alt="Creation Interiors Logo" 
+                  className="h-11 md:h-14 w-auto object-contain max-w-[180px] md:max-w-[240px] transition-transform duration-300 hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <>
+                  <div className="flex items-center gap-1 bg-[#B79041]/10 px-2 py-0.5 rounded-md mb-0.5 border border-[#B79041]/25">
+                    <span className="text-[9px] font-black tracking-widest text-[#B79041] uppercase">CREATION</span>
+                  </div>
+                  <h1 className="text-xl md:text-2xl font-serif font-black tracking-tight text-zinc-900 dark:text-zinc-50 leading-none">
+                    Interiors
+                  </h1>
+                  <span className="text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest block mt-1">
+                    Modern Living
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Right Hand: Interactive Utility Buttons (Search, User Login, Bag) */}
@@ -153,7 +164,7 @@ export default function Navbar({
               >
                 <ShoppingBag className="w-5 h-5 stroke-[1.5]" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-[#96bd2d] text-white font-extrabold text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm">
+                  <span className="absolute -top-0.5 -right-0.5 bg-[#B79041] text-white font-extrabold text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm">
                     {cartCount}
                   </span>
                 )}

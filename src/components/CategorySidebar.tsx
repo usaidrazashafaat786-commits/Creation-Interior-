@@ -62,7 +62,7 @@ export default function CategorySidebar({
         {/* Header toolbar */}
         <div className="p-6 border-b border-zinc-100 dark:border-zinc-900 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-900/20">
           <div className="flex flex-col">
-            <span className="text-[10px] font-black tracking-widest text-[#96bd2d] uppercase">CREATION INTERIORS</span>
+            <span className="text-[10px] font-black tracking-widest text-[#B79041] uppercase">CREATION INTERIORS</span>
             <h3 className="text-xl font-serif font-black text-zinc-900 dark:text-zinc-50 mt-0.5">
               Browse Categories
             </h3>
@@ -91,12 +91,12 @@ export default function CategorySidebar({
               }}
               className={`w-full flex items-center justify-between p-3.5 rounded-2xl border text-left transition duration-150 ${
                 selectedCategory === null
-                  ? "bg-[#96bd2d]/10 border-[#96bd2d]/30 text-[#96bd2d] font-bold"
+                  ? "bg-[#B79041]/10 border-[#B79041]/30 text-[#B79041] font-bold"
                   : "bg-zinc-50/50 dark:bg-zinc-900/40 border-zinc-100 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300"
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className={`p-2.5 rounded-xl ${selectedCategory === null ? "bg-[#96bd2d]/15 text-[#96bd2d]" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-500"}`}>
+                <div className={`p-2.5 rounded-xl ${selectedCategory === null ? "bg-[#B79041]/15 text-[#B79041]" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-500"}`}>
                   <LayoutGrid className="w-4.5 h-4.5" />
                 </div>
                 <div>
@@ -118,7 +118,7 @@ export default function CategorySidebar({
               {categories.map((catName) => {
                 const IconComp = getCategoryIcon(catName);
                 const isSelected = selectedCategory === catName;
-
+ 
                 return (
                   <button
                     key={catName}
@@ -128,12 +128,12 @@ export default function CategorySidebar({
                     }}
                     className={`w-full flex items-center justify-between p-3.5 rounded-2xl border text-left transition duration-150 ${
                       isSelected
-                        ? "bg-[#96bd2d]/10 border-[#96bd2d]/30 text-[#96bd2d] font-bold"
+                        ? "bg-[#B79041]/10 border-[#B79041]/30 text-[#B79041] font-bold"
                         : "bg-zinc-50/50 dark:bg-zinc-900/40 border-zinc-100 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`p-2.5 rounded-xl ${isSelected ? "bg-[#96bd2d]/15 text-[#96bd2d]" : "bg-zinc-100 dark:bg-zinc-800 text-[#96bd2d]"}`}>
+                      <div className={`p-2.5 rounded-xl ${isSelected ? "bg-[#B79041]/15 text-[#B79041]" : "bg-zinc-100 dark:bg-zinc-800 text-[#B79041]"}`}>
                         <IconComp className="w-4.5 h-4.5" />
                       </div>
                       <div>
@@ -149,13 +149,13 @@ export default function CategorySidebar({
           </div>
 
           {/* Quick Hot-links */}
-          <div className="p-4 bg-[#96bd2d]/5 rounded-2xl border border-[#96bd2d]/10 space-y-3">
+          <div className="p-4 bg-[#B79041]/5 rounded-2xl border border-[#B79041]/10 space-y-3">
             <h5 className="text-[10px] font-bold text-zinc-700 dark:text-zinc-300 tracking-wider uppercase">
               Showroom Support
             </h5>
             <div className="text-[11px] text-zinc-500 leading-relaxed space-y-2">
               <p>📍 Seasoned solid teakwood core construction with complimentary on-site assembly across Pakistan.</p>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-[#96bd2d]">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-[#B79041]">
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>Active WhatsApp Support lines</span>
               </div>

@@ -6,20 +6,20 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Custom logo colors mapped to Tailwind v4 variables */
-  --color-brand-purple: #1A0F1A;
-  --color-brand-gold: #D4AF37;
+  --color-brand-purple: #11010E;
+  --color-brand-gold: #B79041;
 
-  /* Override amber to match the logo's premium gold (#D4AF37) */
-  --color-amber-400: #e5c358;
-  --color-amber-500: #D4AF37;
-  --color-amber-600: #bca02d;
-  --color-amber-700: #9a8220;
+  /* Override amber to match the logo's premium gold (#B79041) */
+  --color-amber-400: #d2b166;
+  --color-amber-500: #B79041;
+  --color-amber-600: #9d752f;
+  --color-amber-700: #805d21;
 
   /* Override zinc colors in dark mode to the gorgeous logo deep amethyst purple */
-  --color-zinc-950: #1A0F1A;
-  --color-zinc-900: #251625;
-  --color-zinc-850: #331e33;
-  --color-zinc-800: #422642;
+  --color-zinc-950: #11010E;
+  --color-zinc-900: #1d0219;
+  --color-zinc-850: #290323;
+  --color-zinc-800: #35052e;
 }
 
 /* Custom gorgeous scrollbar styles for luxury coding console */

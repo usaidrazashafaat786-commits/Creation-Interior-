@@ -63,7 +63,7 @@ export default function ProductCard({
       {/* Info elements */}
       <div className="flex flex-col flex-1 p-5 md:p-6 justify-between">
         <div>
-          <h3 className="line-clamp-1 font-serif text-base font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+          <h3 className="line-clamp-1 font-serif text-base font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-[#B79041] dark:group-hover:text-[#B79041] transition-colors">
             {product.name}
           </h3>
           <p className="line-clamp-2 text-xs text-zinc-500 dark:text-zinc-400 mt-1.5 leading-relaxed">
@@ -76,7 +76,7 @@ export default function ProductCard({
             <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
               Luxury Craft
             </span>
-            <span className="text-lg font-black text-amber-600 dark:text-amber-400 font-sans">
+            <span className="text-lg font-black text-[#11010E] dark:text-white font-sans">
               Rs. {product.price.toLocaleString("en-IN")}
             </span>
           </div>

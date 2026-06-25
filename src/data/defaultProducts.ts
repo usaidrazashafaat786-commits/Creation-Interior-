@@ -1,9 +1,12 @@
 import { Product } from "../types";
 
 export const defaultProducts: Product[] = [
+  // ==========================================
+  // BEDROOM FURNITURE (10 Products)
+  // ==========================================
   {
     id: "class-bed-dressing",
-    name: "Class Bed Dressing",
+    name: "Class Bed Dressing Suite",
     description: "The ultimate royal master suite. Features custom neoclassical tufted tall velvet headboard, matching high-lacquer finished nightstands, premium vanity dressers with metallic gold accents, and a luxury posture-support structure.",
     price: 525500,
     category: "Bedroom Furniture",
@@ -18,7 +21,7 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "oxford-bed-dressing",
-    name: "Oxford Bed Dressing",
+    name: "Oxford Bed Dressing Set",
     description: "Sophisticated British elegance reimagined. Handcrafted luxury paneling matched with a warm-toned fabric upholstered headboard and state-of-the-art floating nightstands with built-in ambient warm lighting options.",
     price: 350000,
     category: "Bedroom Furniture",
@@ -33,7 +36,7 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "charm-bed-dressing",
-    name: "Charm Bed Dressing",
+    name: "Charm Bed Dressing Masterpiece",
     description: "A gorgeous contemporary masterpiece. Sleek clean-line golden stainless steel inserts embedded in a hand-tufted micro-suede display headboard, accompanied by stylish modern dresser modules.",
     price: 532000,
     category: "Bedroom Furniture",
@@ -47,7 +50,7 @@ export const defaultProducts: Product[] = [
   },
   {
     id: "supremo-bed-dressing",
-    name: "Supremo Bed Dressing",
+    name: "Supremo Bed Dressing Suite",
     description: "Our absolute signature imperial design. Double-height cushioned velvet backdrop block, finished with exquisite direct-import marble bedside tops, custom brass fixtures, and a majestic vanity console.",
     price: 507500,
     category: "Bedroom Furniture",
@@ -59,6 +62,94 @@ export const defaultProducts: Product[] = [
     },
     isAvailable: true
   },
+  {
+    id: "royal-emperor-bed",
+    name: "Royal Emperor Bed",
+    description: "Indulge in absolute grandeur. Hand-carved solid teak wood crown design with premium gold-leaf detailing and a luxurious deep-buttoned beige silk tufted headboard.",
+    price: 615000,
+    category: "Bedroom Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Dimensions": "84\" (W) x 88\" (L) x 68\" (H)",
+      "Carving": "100% Artisanal Handcrafted Woodwork",
+      "Upholstery": "Pure Dupioni Silk Cover, High Resiliency Foam Core"
+    },
+    isAvailable: true
+  },
+  {
+    id: "majestic-teak-bed",
+    name: "Majestic Teak Bed",
+    description: "Natural organic warmth with luxury integrity. Crafted entirely of seasoned premium-grade Burmese teakwood displaying raw grain finishes and geometric floating headboard slats.",
+    price: 295000,
+    category: "Bedroom Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Timber": "Grade-A Solid Burmese Teakwood",
+      "Finish": "Water-resistant matte polyurethane coat",
+      "Hardware": "Heavy-duty concealed German fittings"
+    },
+    isAvailable: true
+  },
+  {
+    id: "florentine-canopy-bed",
+    name: "Florentine Canopy Bed",
+    description: "Ethereal renaissance architecture for the modern bedroom. Slim matte-black forged iron canopy frame paired with a premium hand-upholstered linen headboard backboard.",
+    price: 340000,
+    category: "Bedroom Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Structure": "Reinforced Powder-Coated Italian Forged Iron",
+      "Headboard": "100% Organic Belgian Linen",
+      "Accent": "Polished brass bracket collars"
+    },
+    isAvailable: true
+  },
+  {
+    id: "classic-slatted-oak-bed",
+    name: "Classic Slatted Oak Bed",
+    description: "Minimalist Scandinavian bedroom aesthetics. Built of solid white oak timber featuring beautiful curved corners and a robust slatted frame designed for optimal cooling and ventilation.",
+    price: 245000,
+    category: "Bedroom Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Material": "Solid North American White Oak Wood",
+      "Base": "Durable multi-slat laminated beechwood suspension",
+      "Eco-Rating": "Zero-VOC eco-certified natural wood oils"
+    },
+    isAvailable: true
+  },
+  {
+    id: "modern-floating-plinth-bed",
+    name: "Modern Floating Plinth Bed",
+    description: "Striking architectural statement. Concealed support base creates a magnificent floating weightless illusion, finished in luxury charcoal oak veneer with matching headboard panels.",
+    price: 385000,
+    category: "Bedroom Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1617325247661-675ab4d61196?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Design": "Low-Profile Plinth Suspension Bedstead",
+      "Veneer": "Crown-cut Charcoal Oak with textured finish",
+      "Options": "Integrated warm LED halo runner beneath frame"
+    },
+    isAvailable: true
+  },
+  {
+    id: "grand-velour-suite",
+    name: "Grand Velour Bed Suite",
+    description: "Opulent velvet masterpiece. Dramatic wingback headboard design wrapped in dense emerald velour fabric, completed with hand-polished copper plinths and trims.",
+    price: 495000,
+    category: "Bedroom Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Upholstery": "High-pile Stain-Proof Emerald Velour",
+      "Trims": "PVD electroplated rose gold stainless steel",
+      "Mattress support": "Heavy-duty double hydraulic lift-up storage"
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // DINING FURNITURE (10 Products)
+  // ==========================================
   {
     id: "valenza-dining-set",
     name: "Valenza Dining Set",
@@ -113,6 +204,523 @@ export const defaultProducts: Product[] = [
       "Includes": "1 x Premium Walnut Table, 6 x Top-Grain Tan Leather Dining Chairs",
       "Material": "North American Walnut, Top-Grain Aniline Leather, Burnished Steel Legs",
       "Dimensions": "220cm (L) x 100cm (W) x 76cm (H)"
+    },
+    isAvailable: true
+  },
+  {
+    id: "monarch-marble-10seater",
+    name: "Monarch Marble 10-Seater Set",
+    description: "Grand entertaining banquet solution. Massive custom Italian Calacatta Viola marble tabletop with gorgeous deep burgundy veining, complete with ten majestic velvet buttoned chairs.",
+    price: 785000,
+    category: "Dining Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Seating Capacity": "10-12 Adults comfortably",
+      "Marble": "Premium honed Calacatta Viola Marble",
+      "Chairs": "Solid Beechwood legs, velvet finish, hand-applied gold tacks"
+    },
+    isAvailable: true
+  },
+  {
+    id: "scandinavian-ash-dining",
+    name: "Nordic Ash Dining Concept",
+    description: "Pure Japanese and Nordic hybrid fusion. Natural ashwood dining table highlighting subtle pale finishes, complete with 6 beautifully hand-woven paper-cord luxury dining chairs.",
+    price: 280000,
+    category: "Dining Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Material": "Premium Solid Ashwood & Oak",
+      "Chair Seat": "Hand-woven natural danish paper-cord (takes 12 hours per chair)",
+      "Finish": "Matte natural hardwax soap finish"
+    },
+    isAvailable: true
+  },
+  {
+    id: "rustic-loft-dining-table",
+    name: "Rustic Loft Dining Set",
+    description: "A perfect blend of industrial metalwork and warm organic live-edge timber. Made of heavy 50mm thick reclaimed railroad oak sleepers matched with a sturdy modern X-frame carbon steel base.",
+    price: 265000,
+    category: "Dining Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1617806118233-18e1db207f62?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Timber": "Reclaimed Century-Old Oak wood slabs",
+      "Base Support": "Heavy industrial carbon-steel profile coated in matte black",
+      "Seats": "6 x Handcrafted vintage genuine leather saddle chairs"
+    },
+    isAvailable: true
+  },
+  {
+    id: "imperial-oval-dining",
+    name: "Imperial Oval Dining Set",
+    description: "Masterful circular luxury dining. Gorgeous radial walnut veneer starburst design on a statement pedestal leg, making conversations flow beautifully. Includes 6 custom-tailored chairs.",
+    price: 395000,
+    category: "Dining Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Table Type": "Radial Walnut Starburst Oval Pedestal",
+      "Material": "American Walnut timber & heavy-cast fluted iron pedestal",
+      "Finish": "Satin clear lacquer for moisture block"
+    },
+    isAvailable: true
+  },
+  {
+    id: "vintage-teak-buffet-credenza",
+    name: "Heritage Teak Buffet Credenza",
+    description: "The ideal dining room centerpiece. Exquisite mid-century retro side credenza handcrafted with sliding tambour doors and solid brass drawer-pull handles.",
+    price: 195000,
+    category: "Dining Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1565538810844-1e119fc048af?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Cabinetry": "Solid teak wood framing and internal shelving",
+      "Tambour Doors": "Precisely routed teak wood slats with fabric backing",
+      "Storage": "3 x Velvet-lined cutlery drawers, 2 x heavy cabinets"
+    },
+    isAvailable: true
+  },
+  {
+    id: "contemporary-glass-dining",
+    name: "Contemporary Glass Dining Deck",
+    description: "Sleek architectural transparency. Heavy 15mm thick tempered glass top floats gracefully above geometric polished steel interlocking struts, elevating spatial airiness.",
+    price: 290000,
+    category: "Dining Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1544207625-f852f8670836?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Glass": "15mm High-density clear tempered safety glass",
+      "Framing": "Bespoke high-mirror polished #304 stainless steel",
+      "Seats": "6 x Italian premium eco-leather modern sling chairs"
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // CHAIRS (10 Products)
+  // ==========================================
+  {
+    id: "mid-century-lounge-chair",
+    name: "Mid-Century Lounge Armchair",
+    description: "Our signature icon. Iconic molded walnut plywood seat shell paired with high-end top-grain black aniline leather cushions and a solid steel swiveling five-star pedestal base.",
+    price: 115000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Type": "Premium Swivel Lounge Chair & Matching Foot Ottoman",
+      "Wood Shell": "7-Ply Molded Walnut Plywood with genuine wood veneer",
+      "Cushions": "Top-Grain Italian Aniline Leather, Premium Latex filling"
+    },
+    isAvailable: true
+  },
+  {
+    id: "regal-velvet-accent-chair",
+    name: "Regal Velvet Accent Chair",
+    description: "Make an absolute statement. Beautifully sculpted curved barrel accent chair upholstered in magnificent mustard yellow velvet, resting on elegant gold-plated steel legs.",
+    price: 55000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Fabric": "Stainproof mustard yellow high-density velvet",
+      "Frame": "Reinforced solid larchwood frame core",
+      "Legs": "Electroplated titanium gold rustproof steel"
+    },
+    isAvailable: true
+  },
+  {
+    id: "sculptural-boucle-armchair",
+    name: "Sculptural Bouclé Cozy Chair",
+    description: "Unparalleled soft tactile bliss. Curved organic cocoon silhouette draped in luxurious cream-colored bouclé textured fabric, offering a cozy clouds sitting experience.",
+    price: 78000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Upholstery": "Premium Textured Cream Bouclé (Wool-blend)",
+      "Cushioning": "High-density foam wrapped in premium down feathers",
+      "Base": "Concealed heavy swivel steel ring platform"
+    },
+    isAvailable: true
+  },
+  {
+    id: "lux-leather-wingback",
+    name: "Imperial Leather Wingback Chair",
+    description: "The timeless gentleman's study reading chair. Tall supportive back with deep hand-tufted buttoning in luxury distressed tan brown leather and solid mahogany wooden block legs.",
+    price: 145000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Leather": "100% Full-grain South American cowhide",
+      "Structure": "Kiln-dried solid mahogany wood framework",
+      "Accents": "Hand-hammered brass upholstery studs"
+    },
+    isAvailable: true
+  },
+  {
+    id: "ergonomic-executive-mesh",
+    name: "Ergonomic Executive Office Chair",
+    description: "State-of-the-art office engineering. High tensile strength breathable mesh backrest, adjustable 3D lumbar support pad, and multi-position lock sync-tilt controls.",
+    price: 48000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1519947400038-953af18444d2?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Mechanism": "Premium Italian synchro-tilt multi-locking controller",
+      "Armrests": "4D adjustability (height, depth, angle, width)",
+      "Gas Lift": "Class 4 heavy-duty pneumatic gas cylinder"
+    },
+    isAvailable: true
+  },
+  {
+    id: "nordic-minimalist-dining-chair",
+    name: "Nordic Minimalist Oak Chair",
+    description: "Understated elegance. Sculpted solid white oak wood dining chair featuring fluid curved legs and a comfortable semi-circular back rest panel.",
+    price: 32000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Wood": "North American Kiln-dried White Oak",
+      "Finish": "Ultra-matte clear organic wood lacquer",
+      "Stackability": "Designed to stack up to 4 chairs high"
+    },
+    isAvailable: true
+  },
+  {
+    id: "vintage-industrial-stool",
+    name: "Vintage Industrial Iron Stool",
+    description: "Rugged character meets breakfast bar seating. Adjustable height swivel wood seat mounted on raw architectural iron framework with a foot rest ring.",
+    price: 25000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Seat Top": "Solid distressed elmwood round block",
+      "Base Frame": "Raw dark iron casting with protective clear coating",
+      "Height Range": "65cm to 85cm adjustable thread"
+    },
+    isAvailable: true
+  },
+  {
+    id: "plush-boucle-swivel-chair",
+    name: "Plush Bouclé Swivel Armchair",
+    description: "Chic contemporary lifestyle living. Complete 360-degree silent rotation capability, stuffed with thick plush duck-down padding, ideal for master bedroom corners or vanity desks.",
+    price: 85000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Rotating base": "Dual-bearing heavy gauge steel swivel",
+      "Fabric type": "Luxury textured linen-bouclé blend",
+      "Load capacity": "Comfortably supports up to 180kg"
+    },
+    isAvailable: true
+  },
+  {
+    id: "teakwood-slatted-easy-chair",
+    name: "Teakwood Slatted Easy Chair",
+    description: "Sunkissed luxury lounging. Perfect veranda or indoor reading easy chair made of high-grade golden teak wood with woven natural rattan mesh back support.",
+    price: 65000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Wood Grade": "Grade-A Solid Burmese Teak",
+      "Mesh Core": "100% Handmade natural rattan split weave",
+      "Angle": "Perfect 115-degree physiological relaxation angle"
+    },
+    isAvailable: true
+  },
+  {
+    id: "chesterfield-tufted-armchair",
+    name: "Classic Chesterfield Armchair",
+    description: "Uncompromised historic nobility. Features classic rolled armrests, deep tufting with hand-wrapped buttons, and ornate turned timber bun feet.",
+    price: 155000,
+    category: "Chairs",
+    imageUrl: "https://images.unsplash.com/photo-1617582907226-c49e2d8200d9?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Material": "Distressed Top-grain Cognac Leather",
+      "Cushion Base": "Heavy coil springs wrapped in premium Dacron foam",
+      "Wooden Legs": "Ornate hand-turned walnut finished wood"
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // WARDROBES (10 Products)
+  // ==========================================
+  {
+    id: "aurora-sliding-wardrobe",
+    name: "Aurora Sliding Wardrobe",
+    description: "Sleek spatial efficiency. Triple-door wide modern sliding wardrobe with built-in soft-closing dampers, integrated motion-activated LED interior hangar lighting, and tinted glass window panels.",
+    price: 285000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Doors": "3 x High-tension sliding glass doors with soft-close dampers",
+      "Lighting": "Concealed warm white 3000K motion-sensor LEDs",
+      "Interior Layout": "6 x Adjustable shelves, 4 x Solid timber organizer drawers, 3 x Hangar rails"
+    },
+    isAvailable: true
+  },
+  {
+    id: "imperial-walkin-closet",
+    name: "Imperial Walk-In Closet System",
+    description: "Ultimate organizer luxury. Massive fully modular custom-configured wardrobe room layout made of exquisite rich mahogany veneers, open storage shelves, and specialized watch/jewelry drawer display drawers.",
+    price: 595000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1558882224-cca166733360?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Modular Units": "5 x Pre-assembled architectural tall modules",
+      "Wood Structure": "Conifer-core multiply board with real dark mahogany wood veneer",
+      "Drawers": "Full extension soft-closing undermount slides with leather linings"
+    },
+    isAvailable: true
+  },
+  {
+    id: "classic-provincial-armoire",
+    name: "Classic Provincial Armoire",
+    description: "Vintage French provincial elegance. Exquisitely painted antique off-white hardwood armoire featuring hand-carved floral cabriole legs and vintage brass keylocks.",
+    price: 215000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Timber": "Solid Mature Alderwood & Russian Birch",
+      "Finish": "Aesthetic distressed antique milk paint coat by hand",
+      "Locking": "Functional historic dual-bolt iron key locks"
+    },
+    isAvailable: true
+  },
+  {
+    id: "minimalist-matte-wardrobe",
+    name: "Minimalist Matte Wardrobe",
+    description: "Ultra-modern architectural block closet. Clean anti-fingerprint matte charcoal door finishes with elegant full-height recessed black aluminum strip pull handles.",
+    price: 195000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Finish Type": "Italian Zero-Gloss Anti-Scratch Nanotechnology Matte",
+      "Hinges": "Blum soft-closing 110-degree hinges",
+      "Shelving": "Reinforced 18mm high-density fiberboard sheets"
+    },
+    isAvailable: true
+  },
+  {
+    id: "glass-mirrored-dressing-closet",
+    name: "Mirror Glass Dressing Wardrobe",
+    description: "Reflect and double your bedroom light. Modern 4-door premium wardrobe fitted with full-length bronze-tinted lead-free crystal mirrors on all outer surfaces.",
+    price: 265000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Mirror Class": "Premium bronze-tinted copper-free safety mirror sheets",
+      "Cabinet timber": "Kiln-dried hardwood ply",
+      "Drawer rails": "Push-to-open modern magnetic pressure latches"
+    },
+    isAvailable: true
+  },
+  {
+    id: "scandinavian-open-wardrobe",
+    name: "Scandi Open Clothes Rack",
+    description: "Sleek minimalist boutique display hanging system. Made of natural blonde birchwood framing combined with matte white powder-coated heavy steel base shelves.",
+    price: 85000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1532372320978-9b4d8a3a0245?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Wood": "Seasoned Finnish Birch Wood",
+      "Metal": "Thick gauge cold-rolled steel panels",
+      "Features": "Adjustable bottom feet leveling pads"
+    },
+    isAvailable: true
+  },
+  {
+    id: "rustic-solid-oak-wardrobe",
+    name: "Rustic Solid Oak Wardrobe",
+    description: "Warm country house tradition. Heavy robust design with beautiful wood grain, double doors opening to reveal immense hanging spaces and wide base blanket drawers.",
+    price: 245000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1505693395321-883724634266?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Timber": "100% Solid American Red Oak Wood",
+      "Drawers": "Traditional hand-cut dovetail joints",
+      "Handles": "Forged oil-rubbed bronze rustic loops"
+    },
+    isAvailable: true
+  },
+  {
+    id: "teak-triple-door-cabinet",
+    name: "Artisanal Teak Triple-Door Cabinet",
+    description: "Exquisite handmade masterpiece. Features traditional louvered wooden door slats allowing natural air ventilation, keeping fabrics exceptionally fresh.",
+    price: 325000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1597072689227-8882273e8f6a?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Wood": "Burmese Teakwood and Rosewood core",
+      "Doors": "Hand-routed angled timber louvers",
+      "Storage": "3 x full hang spaces, 4 x bottom drawers"
+    },
+    isAvailable: true
+  },
+  {
+    id: "industrial-loft-steel-closet",
+    name: "Industrial Loft Metal-Wood Closet",
+    description: "A perfect fusion of raw urban materials. Matte dark iron mesh door fronts contrasted beautifully with warm distressed solid pine internal wood shelves.",
+    price: 185000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Frame": "Structural black angle-iron profile",
+      "Wood": "Kiln-dried rough sawn Southern Yellow Pine",
+      "Features": "Unique sliding industrial barn-door rollers"
+    },
+    isAvailable: true
+  },
+  {
+    id: "monochrome-fitted-wardrobe",
+    name: "Monochrome Built-In Wardrobe",
+    description: "High-end sleek minimalist fitted storage. Perfect sleek white acrylic panels paired with recessed light-wood side boards for a balanced modern look.",
+    price: 295000,
+    category: "Wardrobes",
+    imageUrl: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Exterior": "Ultra-glossy white acrylic sheets bonded to ply core",
+      "Interior": "Canadian Maple wood texture laminate",
+      "Extras": "Pull-out full-length trouser hanger rack"
+    },
+    isAvailable: true
+  },
+
+  // ==========================================
+  // FOAM PRODUCTS (10 Products)
+  // ==========================================
+  {
+    id: "ortho-posture-comfort-mattress",
+    name: "Ortho Posture Comfort Mattress",
+    description: "Medically approved orthopedic sleep surface. High-density rebonded memory foam core engineered specifically to provide structural spinal alignment, relieve joint pressure, and offer standard medium-firm support.",
+    price: 125000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Firmness": "Medium-Firm Orthopedic (7/10 rating)",
+      "Foam Tech": "Dual-density medical grade rebonded core with Aloe Vera quilted knit cover",
+      "Height": "10 Inches thick deluxe profile",
+      "Warranty": "15 Years Non-Sag Guarantee Certificate"
+    },
+    isAvailable: true
+  },
+  {
+    id: "cooling-gel-memory-foam",
+    name: "Cooling Gel Memory Foam Mattress",
+    description: "Premium cooling sleep technology. Open-cell memory foam infused with microscopic cooling gel beads, pulling body heat away to maintain an optimal 18-degree sleeping skin temperature.",
+    price: 145000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Gel Tech": "Phase-Change Cooling Gel Infusion",
+      "Cover": "Ice-Silk Cool-Touch breathable fabric",
+      "Motion Isolation": "Zero-motion transfer rating, perfect for couples"
+    },
+    isAvailable: true
+  },
+  {
+    id: "latex-hybrid-luxury-mattress",
+    name: "Royal Organic Latex Hybrid",
+    description: "Natural, springy, and hyper-breathable luxury. 100% organic natural latex harvested from rubber trees, paired with individually pocketed coil springs for dynamic body response.",
+    price: 185000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Natural latex": "100% Eco-certified organic Dunlop latex",
+      "Coil count": "1,200 micro pocket-coils in King size",
+      "Hypoallergenic": "Naturally dust-mite resistant and anti-fungal"
+    },
+    isAvailable: true
+  },
+  {
+    id: "pocket-spring-cloud-mattress",
+    name: "Pocket Spring Cloud Soft Mattress",
+    description: "Sleep on a literal cloud of comfort. Ultra-plush Euro-top layout stuffed with organic wool-fillings floating over heavy-gauge independent pocket-spring suspension grids.",
+    price: 155000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Feel Profile": "Plush Soft (3.5/10 rating)",
+      "Coils": "Individually-pocketed high-tensile carbon steel springs",
+      "Topper": "3-inch hand-tufted organic cashmere wool Euro-top layer"
+    },
+    isAvailable: true
+  },
+  {
+    id: "executive-ortho-firm-mattress",
+    name: "Executive Extra-Firm Ortho Mattress",
+    description: "Heavy-weight rigid sleep support. Engineered specifically for individuals requiring zero-sink solid sleeping platforms to assist with lumbar therapeutic alignment.",
+    price: 110000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Firmness": "Extra-Firm (9/10 rating)",
+      "Core": "Super-High-Density Rebonded PU Foam",
+      "Fabric": "Anti-static silver-threaded knit cover"
+    },
+    isAvailable: true
+  },
+  {
+    id: "natural-coir-support-mattress",
+    name: "Organic Coconut Coir Foam Mattress",
+    description: "An eco-friendly natural masterpiece. Alternating layers of rubberized coconut husk coir and organic latex, providing perfect temperature-neutral rigid support.",
+    price: 135000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Coir base": "100% Organic natural sterilized coconut fiber",
+      "Eco certification": "GOLS (Global Organic Latex Standard) verified",
+      "Breathing": "Self-ventilating structural design"
+    },
+    isAvailable: true
+  },
+  {
+    id: "micro-duo-reversible-foam",
+    name: "Micro-Duo Reversible Foam Mattress",
+    description: "Two options in a single mattress. Features a soft-contouring memory foam surface on one side, and a medium-firm orthopedic support surface on the opposite side.",
+    price: 95000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Design": "Dual-sided flippable comfort profile",
+      "Side A": "3-inch high responsive pressure-relief memory foam",
+      "Side B": "7-inch dense base support foam"
+    },
+    isAvailable: true
+  },
+  {
+    id: "ergonomic-memory-pillow-set",
+    name: "Ergonomic Memory Contour Pillow Set",
+    description: "Banish morning neck aches forever. Specially contoured wave shape supports the natural physiological alignment of your head, neck, and shoulders.",
+    price: 18000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1629079448115-4cf57ec6eb6e?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Includes": "2 x Premium Contour Neck Pillows",
+      "Material": "Slow-rebound active memory foam core",
+      "Casing": "Removable and washable bamboo-derived fiber zipper cover"
+    },
+    isAvailable: true
+  },
+  {
+    id: "contouring-body-support-bolster",
+    name: "Full-Body Foam Support Bolster",
+    description: "Ultimate side-sleeping comfort aid. Premium full-length foam bolster that contours perfectly around your limbs to relieve pelvic strain.",
+    price: 14000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Dimensions": "140cm (L) x 30cm (Diameter)",
+      "Core": "Hypoallergenic shredded microfiber and cooling memory foam",
+      "Fabric": "Ultra-soft cotton velvet casing"
+    },
+    isAvailable: true
+  },
+  {
+    id: "luxury-feather-touch-topper",
+    name: "Feather-Touch Comfort Topper",
+    description: "Instantly upgrade any old mattress. A lush 3-inch thick microfiber mattress topper that adds cloud-like cushioning comfort to any bed.",
+    price: 28000,
+    category: "Foam Products",
+    imageUrl: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Thickness": "3 Inches (7.5cm) plush overlay",
+      "Fill": "Down-alternative siliconized feather microfibers",
+      "Attachment": "4 x Elastic corner anchor straps to hold in place"
     },
     isAvailable: true
   }

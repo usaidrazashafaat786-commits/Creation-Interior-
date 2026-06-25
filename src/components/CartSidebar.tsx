@@ -114,7 +114,7 @@ export default function CartSidebar({
                     <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-1">
                       {item.product.name}
                     </h4>
-                    <p className="text-xs text-amber-600 dark:text-amber-400 font-sans font-black mt-0.5">
+                    <p className="text-xs text-zinc-950 dark:text-white font-sans font-black mt-0.5">
                       ₹ {item.product.price.toLocaleString("en-IN")}
                     </p>
                   </div>
@@ -178,7 +178,7 @@ export default function CartSidebar({
               </div>
               <div className="flex justify-between text-sm pt-2.5 border-t border-zinc-200 dark:border-zinc-800">
                 <span className="font-bold text-zinc-800 dark:text-zinc-200">Final Aggregate Cost</span>
-                <span className="text-lg font-black text-amber-600 dark:text-amber-400 font-sans">
+                <span className="text-lg font-black text-zinc-950 dark:text-white font-sans">
                   ₹ {subtotal.toLocaleString("en-IN")}
                 </span>
               </div>

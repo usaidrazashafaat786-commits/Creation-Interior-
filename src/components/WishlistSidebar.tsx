@@ -71,7 +71,7 @@ export default function WishlistSidebar({
               </div>
               <button
                 onClick={onClose}
-                className="text-xs font-bold text-[#96bd2d] hover:underline bg-[#96bd2d]/5 border border-[#96bd2d]/10 px-4 py-2 rounded-xl transition"
+                className="text-xs font-bold text-[#B79041] hover:underline bg-[#B79041]/5 border border-[#B79041]/10 px-4 py-2 rounded-xl transition"
               >
                 Start Browsing
               </button>
@@ -114,7 +114,7 @@ export default function WishlistSidebar({
                     </div>
 
                     <div className="flex items-center justify-between gap-1.5 mt-2.5 pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
-                      <span className="text-xs font-black text-amber-600 dark:text-amber-400">
+                      <span className="text-xs font-black text-zinc-950 dark:text-white">
                         Rs. {prod.price.toLocaleString("en-IN")}
                       </span>
 
@@ -126,7 +126,7 @@ export default function WishlistSidebar({
                         disabled={!prod.isAvailable}
                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all ${
                           prod.isAvailable
-                            ? "bg-zinc-900 hover:bg-zinc-800 dark:bg-[#96bd2d] dark:hover:bg-[#85ab25] text-white dark:text-zinc-950"
+                            ? "bg-zinc-900 hover:bg-zinc-800 dark:bg-[#B79041] dark:hover:bg-[#9d752f] text-white dark:text-zinc-950"
                             : "bg-zinc-100 dark:bg-zinc-800 text-zinc-400 cursor-not-allowed"
                         }`}
                       >
