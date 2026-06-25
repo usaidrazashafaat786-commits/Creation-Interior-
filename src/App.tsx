@@ -330,7 +330,7 @@ export default function App() {
     const encodedMessage = encodeURIComponent(fullMessage);
     
     // Replace with actual furniture business contact WhatsApp number
-    const businessNumber = "919876543210"; 
+    const businessNumber = "923702790763"; 
     const whatsappLink = `https://api.whatsapp.com/send?phone=${businessNumber}&text=${encodedMessage}`;
 
     // Clear cart immediately
@@ -920,7 +920,7 @@ export default function App() {
 
       {/* Floating WhatsApp Action Button */}
       <a
-        href="https://wa.me/919876543210"
+        href="https://wa.me/923702790763"
         target="_blank"
         rel="noopener noreferrer"
         id="floating_whatsapp_btn"
