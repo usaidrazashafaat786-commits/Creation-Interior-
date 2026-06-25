@@ -1132,7 +1132,7 @@ fun CartScreen(
 private fun sendWhatsAppDetails(context: Context, msg: String) {
     val encodedMsg = URLEncoder.encode(msg, "UTF-8")
     // Replace with your true registered furniture business contact number
-    val businessNumber = "923702790763" 
+    val businessNumber = "923379929157" 
     val uri = Uri.parse("https://api.whatsapp.com/send?phone=" + "$" + "{businessNumber}&text=" + "$" + "{encodedMsg}")
     val intent = Intent(Intent.ACTION_VIEW, uri)
     try {

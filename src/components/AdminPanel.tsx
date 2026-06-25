@@ -289,7 +289,7 @@ export default function AdminPanel({
         
         {/* Guarded Admin Login Screen */}
         {!isAuthenticated ? (
-          <div className="flex-1 flex flex-col justify-center items-center p-8 bg-gradient-to-b from-[#11010E] to-[#050004] text-white overflow-y-auto">
+          <div className="flex-1 flex flex-col justify-center items-center p-8 bg-gradient-to-b from-zinc-950 to-black text-white overflow-y-auto">
             <button
               onClick={onClose}
               className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 text-zinc-400 hover:text-white transition"
@@ -300,7 +300,7 @@ export default function AdminPanel({
 
             <div className="w-full max-w-md bg-white/5 border border-white/10 p-8 rounded-3xl shadow-xl backdrop-blur-md space-y-6 my-4">
               <div className="text-center space-y-2">
-                <div className="w-14 h-14 bg-gradient-to-tr from-[#B79041] to-[#d2b166] rounded-2xl flex items-center justify-center text-[#11010E] font-bold text-2xl mx-auto shadow-lg shadow-[#B79041]/15">
+                <div className="w-14 h-14 bg-gradient-to-tr from-[#B79041] to-[#d2b166] rounded-2xl flex items-center justify-center text-zinc-950 font-bold text-2xl mx-auto shadow-lg shadow-[#B79041]/15">
                   {isSetupMode ? <Settings className="w-6 h-6" /> : <Lock className="w-6 h-6" />}
                 </div>
                 <h2 className="text-2xl font-serif font-black tracking-tight text-white">

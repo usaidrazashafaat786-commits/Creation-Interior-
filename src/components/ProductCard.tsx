@@ -76,7 +76,7 @@ export default function ProductCard({
             <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
               Luxury Craft
             </span>
-            <span className="text-lg font-black text-[#11010E] dark:text-white font-sans">
+            <span className="text-lg font-black text-zinc-950 dark:text-white font-sans">
               Rs. {product.price.toLocaleString("en-IN")}
             </span>
           </div>

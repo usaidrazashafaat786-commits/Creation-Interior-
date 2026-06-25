@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import BannerSlider from "./components/BannerSlider";
 import CategoryFilter from "./components/CategoryFilter";
+import MegaSalePresentation from "./components/MegaSalePresentation";
 import ProductCard from "./components/ProductCard";
 import CategorySidebar from "./components/CategorySidebar";
 import ProductDetailModal from "./components/ProductDetailModal";
@@ -16,7 +17,8 @@ import { useRealFirebase, db, auth } from "./services/firebase";
 import { collection, getDocs, addDoc, onSnapshot, doc, setDoc } from "firebase/firestore";
 import { Sofa, Bed, ShieldCheck, HelpCircle, Gift, PhoneCall, Code, Landmark } from "lucide-react";
 
-const logoImg = "/src/logo.png";
+// @ts-ignore
+import logoImg from "./logo.png";
 
 export default function App() {
   // Theme state
@@ -46,7 +48,10 @@ export default function App() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (parsed.length < 15) {
+        const hasFoam = parsed.some((p: any) => p.category === "Foam Products" || p.category === "Sofa Set");
+        const hasSofaSets = parsed.some((p: any) => p.category === "Sofa Sets");
+        if (parsed.length < 15 || hasFoam || !hasSofaSets) {
+          localStorage.setItem("creation_products", JSON.stringify(defaultProducts));
           return defaultProducts;
         }
         return parsed;
@@ -106,7 +111,14 @@ export default function App() {
   // Dynamic state managers for Admin Customizer
   const [categories, setCategories] = useState<string[]>(() => {
     const saved = localStorage.getItem("creation_categories");
-    return saved ? JSON.parse(saved) : ["Bedroom Furniture", "Dining Furniture", "Chairs", "Wardrobes", "Foam Products"];
+    const initial = saved ? JSON.parse(saved) : ["Sofa Sets", "Sofa Cum Beds", "Bedroom Sets", "Dining Sets", "Interior Design", "Custom Furniture"];
+    const hasOld = initial.some((cat: string) => cat === "Foam Products" || cat === "Sofa Set" || cat === "Bedroom Furniture");
+    if (hasOld) {
+      const reset = ["Sofa Sets", "Sofa Cum Beds", "Bedroom Sets", "Dining Sets", "Interior Design", "Custom Furniture"];
+      localStorage.setItem("creation_categories", JSON.stringify(reset));
+      return reset;
+    }
+    return initial;
   });
 
   const [bannerSlides, setBannerSlides] = useState<BannerSlide[]>(() => {
@@ -330,7 +342,7 @@ export default function App() {
     const encodedMessage = encodeURIComponent(fullMessage);
     
     // Replace with actual furniture business contact WhatsApp number
-    const businessNumber = "923702790763"; 
+    const businessNumber = "923379929157"; 
     const whatsappLink = `https://api.whatsapp.com/send?phone=${businessNumber}&text=${encodedMessage}`;
 
     // Clear cart immediately
@@ -400,11 +412,6 @@ export default function App() {
         {/* Banner Hero Slides */}
         <BannerSlider slides={bannerSlides} />
 
-        {/* Category Filter ribbons */}
-        <div className="pt-2">
-          <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} categories={categories} />
-        </div>
-
         {/* EDITORIAL RENDERING VS SEARCH CATALOGUE RESULTS */}
         {selectedCategory === null && searchQuery === "" ? (
           /* RENDER THE COMPETITOR'S REPLICA LANDING PAGE */
@@ -425,37 +432,43 @@ export default function App() {
               </div>
 
               {/* Grid of clickable category cards */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {[
                   {
-                    name: "Bedroom Furniture",
+                    name: "Sofa Sets",
+                    tagline: "Royal Comfort Lounge",
+                    badge: "Luxury",
+                    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&auto=format&fit=crop&q=80",
+                  },
+                  {
+                    name: "Sofa Cum Beds",
+                    tagline: "Premium Smart Spaces",
+                    badge: "Innovative",
+                    image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&auto=format&fit=crop&q=80",
+                  },
+                  {
+                    name: "Bedroom Sets",
                     tagline: "Royal Master Suites",
                     badge: "Trending",
                     image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&auto=format&fit=crop&q=80",
                   },
                   {
-                    name: "Dining Furniture",
+                    name: "Dining Sets",
                     tagline: "Solid Teak & Quartz",
                     badge: "Artisanal",
                     image: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=400&auto=format&fit=crop&q=80",
                   },
                   {
-                    name: "Chairs",
-                    tagline: "Ergonomic Loungers",
-                    badge: "Ergonomic",
-                    image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&auto=format&fit=crop&q=80",
+                    name: "Interior Design",
+                    tagline: "Turnkey 3D Plans",
+                    badge: "Signature",
+                    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&auto=format&fit=crop&q=80",
                   },
                   {
-                    name: "Wardrobes",
-                    tagline: "Modern Fitted Closets",
-                    badge: "Bespoke",
-                    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&auto=format&fit=crop&q=80",
-                  },
-                  {
-                    name: "Foam Products",
-                    tagline: "Orthopedic Support",
-                    badge: "Wellness",
-                    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&auto=format&fit=crop&q=80",
+                    name: "Custom Furniture",
+                    tagline: "Bespoke Masterpieces",
+                    badge: "Handcrafted",
+                    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400&auto=format&fit=crop&q=80",
                   }
                 ].map((item) => (
                   <button
@@ -491,128 +504,113 @@ export default function App() {
               </div>
             </section>
 
-            {/* 1. Bedroom Furniture Section */}
-            <section className="space-y-8">
-              <div className="text-center space-y-4">
-                <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100">
-                  Bedroom Furniture
+            {/* Mega Sale Live Presentation Slideshow Section */}
+            <section className="space-y-8" id="mega_sale_presentation_section">
+              <div className="text-center space-y-2">
+                <span className="text-[9px] font-black tracking-widest text-[#B79041] bg-[#B79041]/10 border border-[#B79041]/20 px-3 py-1 rounded-full uppercase inline-block animate-pulse">
+                  ✨ LIMITED-TIME INTERACTIVE SHOWCASE
+                </span>
+                <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100 font-medium">
+                  Mega Sale Interactive Presentation
                 </h2>
-                <div className="flex justify-center">
-                  <button
-                    onClick={() => setSelectedCategory("Bedroom Furniture")}
-                    className="border border-zinc-300 dark:border-zinc-700 px-7 py-2.5 rounded-none hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-xs font-serif tracking-widest uppercase font-medium"
-                  >
-                    View all
-                  </button>
-                </div>
-              </div>
-
-              {/* Bedroom Row Carousel/Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {products
-                  .filter((p) => p.category === "Bedroom Furniture")
-                  .slice(0, 4)
-                  .map((prod) => (
-                    <ProductCard
-                      key={prod.id}
-                      product={prod}
-                      onShowDetails={setSelectedProduct}
-                      onAddToCart={handleAddToCart}
-                      isWishlisted={wishlist.includes(prod.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
-              </div>
-
-              {/* Delicate Pagination Indicator */}
-              <div className="flex items-center justify-center gap-3 text-zinc-400 text-xs">
-                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
-                  &lt;
-                </button>
-                <span className="font-mono text-[11px] tracking-wider select-none">1 / 1</span>
-                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
-                  &gt;
-                </button>
-              </div>
-            </section>
-
-            {/* 2. Premium Split Mid-Promo Banner Block */}
-            <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-zinc-50/50 dark:bg-zinc-900/30 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-900/50">
-              <div className="md:col-span-6 overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 shadow-sm aspect-[16/10]">
-                <img
-                  src="https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=800&auto=format&fit=crop&q=80"
-                  alt="Fine Dining Furniture Design"
-                  className="w-full h-full object-cover hover:scale-103 transition-transform duration-700"
-                />
-              </div>
-              
-              <div className="md:col-span-6 space-y-6 md:pl-4">
-                <div className="space-y-1">
-                  <h3 className="text-sm font-bold tracking-widest text-[#B79041] uppercase">
-                    FURNITURE THAT FEELS LIKE
-                  </h3>
-                  <h4 className="text-4xl md:text-5xl font-serif italic tracking-tight text-zinc-900 dark:text-zinc-100 font-medium">
-                    Home
-                  </h4>
-                </div>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed max-w-lg">
-                  From luxurious family dinners to quiet, peaceful evenings, our pieces are meticulously handcrafted using premium materials to turn every room into a timeless sanctuary you love coming back to.
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
+                  Play or manually step through our custom high-end design slides to explore live limited-time discounts, material details, and boutique location directions.
                 </p>
-                <div>
-                  <button
-                    onClick={() => setSelectedCategory("Dining Furniture")}
-                    className="px-8 py-3.5 bg-zinc-900 hover:bg-zinc-850 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-serif text-xs tracking-widest uppercase font-medium transition duration-150 shadow-sm outline-none"
-                  >
-                    Shop Now
-                  </button>
-                </div>
+              </div>
+
+              <div className="max-w-4xl mx-auto px-1 sm:px-4">
+                <MegaSalePresentation />
               </div>
             </section>
 
-            {/* 3. Dining Furniture Section */}
-            <section className="space-y-8">
-              <div className="text-center space-y-4">
-                <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100">
-                  Dining Furniture
-                </h2>
-                <div className="flex justify-center">
-                  <button
-                    onClick={() => setSelectedCategory("Dining Furniture")}
-                    className="border border-zinc-300 dark:border-zinc-700 px-7 py-2.5 rounded-none hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-xs font-serif tracking-widest uppercase font-medium"
-                  >
-                    View all
-                  </button>
-                </div>
-              </div>
+            {/* Curated Dynamic Category Showcases */}
+            {categories.map((catName, index) => {
+              const catProducts = products.filter((p) => p.category === catName);
+              if (catProducts.length === 0) return null;
 
-              {/* Dining Row Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {products
-                  .filter((p) => p.category === "Dining Furniture")
-                  .slice(0, 4)
-                  .map((prod) => (
-                    <ProductCard
-                      key={prod.id}
-                      product={prod}
-                      onShowDetails={setSelectedProduct}
-                      onAddToCart={handleAddToCart}
-                      isWishlisted={wishlist.includes(prod.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
-              </div>
+              return (
+                <React.Fragment key={catName}>
+                  <section className="space-y-8">
+                    <div className="text-center space-y-4">
+                      <span className="text-[9px] font-black tracking-widest text-[#B79041] bg-[#B79041]/10 border border-[#B79041]/20 px-3 py-1 rounded-full uppercase inline-block">
+                        Featured Collection
+                      </span>
+                      <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100">
+                        {catName}
+                      </h2>
+                      <div className="flex justify-center">
+                        <button
+                          onClick={() => setSelectedCategory(catName)}
+                          className="border border-zinc-300 dark:border-zinc-700 px-7 py-2.5 rounded-none hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-xs font-serif tracking-widest uppercase font-medium"
+                        >
+                          View all {catName}
+                        </button>
+                      </div>
+                    </div>
 
-              {/* Pagination indicators */}
-              <div className="flex items-center justify-center gap-3 text-zinc-400 text-xs">
-                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
-                  &lt;
-                </button>
-                <span className="font-mono text-[11px] tracking-wider select-none">1 / 1</span>
-                <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
-                  &gt;
-                </button>
-              </div>
-            </section>
+                    {/* Products Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {catProducts.slice(0, 4).map((prod) => (
+                        <ProductCard
+                          key={prod.id}
+                          product={prod}
+                          onShowDetails={setSelectedProduct}
+                          onAddToCart={handleAddToCart}
+                          isWishlisted={wishlist.includes(prod.id)}
+                          onToggleWishlist={handleToggleWishlist}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Delicate Pagination Indicator */}
+                    <div className="flex items-center justify-center gap-3 text-zinc-400 text-xs">
+                      <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
+                        &lt;
+                      </button>
+                      <span className="font-mono text-[11px] tracking-wider select-none">1 / 1</span>
+                      <button className="p-1 hover:text-zinc-900 dark:hover:text-zinc-100 cursor-not-allowed" disabled>
+                        &gt;
+                      </button>
+                    </div>
+                  </section>
+
+                  {/* Inline Premium Promo Banner after second category shelf */}
+                  {index === 1 && (
+                    <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-zinc-50/50 dark:bg-zinc-900/30 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-900/50">
+                      <div className="md:col-span-6 overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 shadow-sm aspect-[16/10]">
+                        <img
+                          src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&auto=format&fit=crop&q=80"
+                          alt="Fine Custom Interior and Furniture Design"
+                          className="w-full h-full object-cover hover:scale-103 transition-transform duration-700"
+                        />
+                      </div>
+                      
+                      <div className="md:col-span-6 space-y-6 md:pl-4">
+                        <div className="space-y-1">
+                          <h3 className="text-sm font-bold tracking-widest text-[#B79041] uppercase">
+                            FURNITURE THAT FEELS LIKE
+                          </h3>
+                          <h4 className="text-4xl md:text-5xl font-serif italic tracking-tight text-zinc-900 dark:text-zinc-100 font-medium">
+                            Home
+                          </h4>
+                        </div>
+                        <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed max-w-lg">
+                          From luxurious family dinners to quiet, peaceful evenings, our pieces are meticulously handcrafted using premium materials to turn every room into a timeless sanctuary you love coming back to.
+                        </p>
+                        <div>
+                          <button
+                            onClick={() => setSelectedCategory("Sofa Sets")}
+                            className="px-8 py-3.5 bg-zinc-900 hover:bg-zinc-850 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-serif text-xs tracking-widest uppercase font-medium transition duration-150 shadow-sm outline-none"
+                          >
+                            Shop Now
+                          </button>
+                        </div>
+                      </div>
+                    </section>
+                  )}
+                </React.Fragment>
+              );
+            })}
 
             {/* 4. Complete Catalog & Range Slider Section below */}
             <section className="border-t border-zinc-100 dark:border-zinc-900 pt-16 space-y-8">
@@ -920,7 +918,7 @@ export default function App() {
 
       {/* Floating WhatsApp Action Button */}
       <a
-        href="https://wa.me/923702790763"
+        href="https://wa.me/923379929157"
         target="_blank"
         rel="noopener noreferrer"
         id="floating_whatsapp_btn"

@@ -1,6 +1,6 @@
 import { Product } from "../types";
 
-export const defaultProducts: Product[] = [
+const rawProducts: Product[] = [
   // ==========================================
   // BEDROOM FURNITURE (10 Products)
   // ==========================================
@@ -581,147 +581,288 @@ export const defaultProducts: Product[] = [
   },
 
   // ==========================================
-  // FOAM PRODUCTS (10 Products)
+  // SOFA SET (12 Products)
   // ==========================================
   {
-    id: "ortho-posture-comfort-mattress",
-    name: "Ortho Posture Comfort Mattress",
-    description: "Medically approved orthopedic sleep surface. High-density rebonded memory foam core engineered specifically to provide structural spinal alignment, relieve joint pressure, and offer standard medium-firm support.",
-    price: 125000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80",
+    id: "monarch-velvet-sofa",
+    name: "Monarch Royal Velvet Sofa Set",
+    description: "The crown jewel of living room comfort. Features custom deep-tufted rich emerald green velvet upholstery, double-cushioned seat pans, and premium gold-capped tapered solid wood legs. Complete 3+2+1 seating setup.",
+    price: 485000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Firmness": "Medium-Firm Orthopedic (7/10 rating)",
-      "Foam Tech": "Dual-density medical grade rebonded core with Aloe Vera quilted knit cover",
-      "Height": "10 Inches thick deluxe profile",
-      "Warranty": "15 Years Non-Sag Guarantee Certificate"
+      "Seating Capacity": "6 Adults (3-Seater, 2-Seater, and 1-Seater Sofa Suite)",
+      "Material": "Solid Seasoned Larchwood Frame, Premium Italian High-Pile Velvet",
+      "Cushioning": "High-Resiliency 40-Density Foam, pocket springs, and luxury fiber wrap",
+      "Legs": "Solid Teak with PVD Gold-plated Brass feet caps"
     },
     isAvailable: true
   },
   {
-    id: "cooling-gel-memory-foam",
-    name: "Cooling Gel Memory Foam Mattress",
-    description: "Premium cooling sleep technology. Open-cell memory foam infused with microscopic cooling gel beads, pulling body heat away to maintain an optimal 18-degree sleeping skin temperature.",
-    price: 145000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&auto=format&fit=crop&q=80",
+    id: "italian-sectional-sofa",
+    name: "Milano Italian Leather L-Shape Sectional",
+    description: "Ultra-modern architectural excellence. Handcrafted with authentic top-grain Italian aniline leather that develops a gorgeous rich patina over time. Features multi-position adjustable headrests and a sprawling modular chaise lounge.",
+    price: 620000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Gel Tech": "Phase-Change Cooling Gel Infusion",
-      "Cover": "Ice-Silk Cool-Touch breathable fabric",
-      "Motion Isolation": "Zero-motion transfer rating, perfect for couples"
+      "Configuration": "Left-Facing L-Shape Modular Sectional",
+      "Leather Type": "100% Genuine Top-Grain Italian Aniline Leather",
+      "Frame Support": "Reinforced structural steel corner brackets and seasoned beechwood",
+      "Features": "5-stage ratchet adjustable headrests, deep-lounge configuration"
     },
     isAvailable: true
   },
   {
-    id: "latex-hybrid-luxury-mattress",
-    name: "Royal Organic Latex Hybrid",
-    description: "Natural, springy, and hyper-breathable luxury. 100% organic natural latex harvested from rubber trees, paired with individually pocketed coil springs for dynamic body response.",
-    price: 185000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&auto=format&fit=crop&q=80",
+    id: "oxford-chesterfield-set",
+    name: "Oxford Vintage Leather Chesterfield Set",
+    description: "Understated historical nobility. Classic British chesterfield silhouette with deep hand-folded diamond button tufting, elegant rolled scroll arms, and classic brass stud detailing. Upholstered in rich vintage tan cowhide.",
+    price: 510000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Natural latex": "100% Eco-certified organic Dunlop latex",
-      "Coil count": "1,200 micro pocket-coils in King size",
-      "Hypoallergenic": "Naturally dust-mite resistant and anti-fungal"
+      "Includes": "1 x Grand 3-Seater, 2 x Classic Chesterfield Armchairs",
+      "Upholstery": "Premium full-aniline distressed cowhide leather",
+      "Craftsmanship": "100% Hand-hammered brass upholstery tacks & hand-folded diamond tufting",
+      "Base Support": "Heavy-gauge steel sinuous spring suspension"
     },
     isAvailable: true
   },
   {
-    id: "pocket-spring-cloud-mattress",
-    name: "Pocket Spring Cloud Soft Mattress",
-    description: "Sleep on a literal cloud of comfort. Ultra-plush Euro-top layout stuffed with organic wool-fillings floating over heavy-gauge independent pocket-spring suspension grids.",
-    price: 155000,
-    category: "Foam Products",
+    id: "boucle-cloud-sectional",
+    name: "Cloud Comfort Bouclé Sofa Lounge",
+    description: "The ultimate tactile sanctuary. Sprawling organic curved silhouette wrapped in a high-weight rich cream-colored wool bouclé fabric. Engineered with duck-down feather blend inserts for a floating cloud seating feel.",
+    price: 425000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Structure": "Low-profile curvilinear modular construction",
+      "Fabric Type": "Premium Textured Cream Wool-blend Bouclé",
+      "Filling": "50% Shredded memory foam, 50% Natural sterilized duck-down feathers",
+      "Base": "Concealed heavy-duty non-slip platform feet"
+    },
+    isAvailable: true
+  },
+  {
+    id: "nordic-hybrid-sofa",
+    name: "Copenhagen Nordic Hybrid Oak Sofa",
+    description: "A gorgeous blend of Japanese and Scandinavian minimalism. Features a beautifully exposed frame made of solid sustainably sourced North American white oak, holding plump stainproof light-grey linen cushions.",
+    price: 310000,
+    category: "Sofa Set",
     imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Feel Profile": "Plush Soft (3.5/10 rating)",
-      "Coils": "Individually-pocketed high-tensile carbon steel springs",
-      "Topper": "3-inch hand-tufted organic cashmere wool Euro-top layer"
+      "Includes": "1 x 3-Seater Sofa, 1 x Coordinating Lounge Accent Chair",
+      "Timber": "Grade-A Solid North American White Oak with matte lacquer finish",
+      "Fabric": "Stain-resistant and hydrophobic blended natural organic linen",
+      "Removable Covers": "Yes, all cushion covers are fully zippered and dry-cleanable"
     },
     isAvailable: true
   },
   {
-    id: "executive-ortho-firm-mattress",
-    name: "Executive Extra-Firm Ortho Mattress",
-    description: "Heavy-weight rigid sleep support. Engineered specifically for individuals requiring zero-sink solid sleeping platforms to assist with lumbar therapeutic alignment.",
-    price: 110000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&auto=format&fit=crop&q=80",
+    id: "casablanca-custom-lounge",
+    name: "Casablanca Imperial 7-Seater Suite",
+    description: "Regal eastern hospitality reinvented. High-back comfortable design with exquisite hand-carved mahogany wood panels framing the crown and armrests, completed in luxury rich brocade golden-cream fabrics.",
+    price: 680000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Firmness": "Extra-Firm (9/10 rating)",
-      "Core": "Super-High-Density Rebonded PU Foam",
-      "Fabric": "Anti-static silver-threaded knit cover"
+      "Includes": "1 x 3-Seater, 2 x 2-Seater Comfort Couches",
+      "Wood Panels": "Solid Mature Swat Valley Walnut Wood with semi-gloss honey polish",
+      "Upholstery": "Heavy-duty imported damask and royal jacquard fabric weave",
+      "Warranty": "15 Years Termite and Wood Splitting Warranty"
     },
     isAvailable: true
   },
   {
-    id: "natural-coir-support-mattress",
-    name: "Organic Coconut Coir Foam Mattress",
-    description: "An eco-friendly natural masterpiece. Alternating layers of rubberized coconut husk coir and organic latex, providing perfect temperature-neutral rigid support.",
-    price: 135000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop&q=80",
+    id: "tuscan-warm-leather",
+    name: "Tuscan Cognac Leather Loveseat Suite",
+    description: "Sleek, low-slung, mid-century classic design. Features premium full-grain cognac-colored warm leather encasing a high-density orthopedic seating deck, supported by artistic matte-black architectural steel legs.",
+    price: 285000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Coir base": "100% Organic natural sterilized coconut fiber",
-      "Eco certification": "GOLS (Global Organic Latex Standard) verified",
-      "Breathing": "Self-ventilating structural design"
+      "Includes": "2 x Modular Loveseats (Comfortably seats 4 adults)",
+      "Leather Class": "Premium grade drum-dyed full-grain cowhide",
+      "Metal Base": "Reinforced structural tube steel powder-coated in matte charcoal",
+      "Dimensions": "165cm (W) x 88cm (D) x 72cm (H) per loveseat"
     },
     isAvailable: true
   },
   {
-    id: "micro-duo-reversible-foam",
-    name: "Micro-Duo Reversible Foam Mattress",
-    description: "Two options in a single mattress. Features a soft-contouring memory foam surface on one side, and a medium-firm orthopedic support surface on the opposite side.",
-    price: 95000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=800&auto=format&fit=crop&q=80",
+    id: "emerald-wing-lounge",
+    name: "Emerald Tufted Wingback Living Room Set",
+    description: "Dramatic proportions for stylish lounges. Features beautiful extra-high shelter wingback panels, deep hand-folded buttoning, and matching cylindrical velvet bolsters for perfect lateral lumbar support.",
+    price: 395000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1549187774-b4e9b0445b41?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Design": "Dual-sided flippable comfort profile",
-      "Side A": "3-inch high responsive pressure-relief memory foam",
-      "Side B": "7-inch dense base support foam"
+      "Includes": "1 x High-Back 3-Seater, 2 x Majestic Matching Wingback Armchairs",
+      "Fabric Core": "Royal Emerald-Green dense structural performance velvet",
+      "Hardware": "Heavy-duty concealed steel brackets, interlocking corner blocks",
+      "Cushioning": "Multi-layered memory foam topped with hypoallergenic soft microfibers"
     },
     isAvailable: true
   },
   {
-    id: "ergonomic-memory-pillow-set",
-    name: "Ergonomic Memory Contour Pillow Set",
-    description: "Banish morning neck aches forever. Specially contoured wave shape supports the natural physiological alignment of your head, neck, and shoulders.",
-    price: 18000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1629079448115-4cf57ec6eb6e?w=800&auto=format&fit=crop&q=80",
+    id: "contemporary-minimalist-sofa",
+    name: "Tokyo Sleek Architectural Sofa Set",
+    description: "Clean, geometric, and crisp lines. Designed for high-end modern apartments, featuring raw low-profile industrial layouts, premium high-resiliency dense foam, and premium charcoal-grey interwoven textile covers.",
+    price: 340000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Includes": "2 x Premium Contour Neck Pillows",
-      "Material": "Slow-rebound active memory foam core",
-      "Casing": "Removable and washable bamboo-derived fiber zipper cover"
+      "Includes": "1 x Architectural 3-Seater, 1 x Luxury Matching Daybed Ottoman",
+      "Fabric": "Interwoven heavyweight anti-snag tech fabric (ideal for pet owners)",
+      "Internal Core": "Solid kiln-dried Russian pine wood with high elastomeric webbings"
     },
     isAvailable: true
   },
   {
-    id: "contouring-body-support-bolster",
-    name: "Full-Body Foam Support Bolster",
-    description: "Ultimate side-sleeping comfort aid. Premium full-length foam bolster that contours perfectly around your limbs to relieve pelvic strain.",
-    price: 14000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80",
+    id: "golden-accent-luxury-sofa",
+    name: "Venetian Gilded Royal Sofa Suite",
+    description: "An absolute masterpiece of premium Italian renaissance luxury. Showcases magnificent hand-carved mahogany scrollwork details completely finished in actual 24k gold-leaf gilding, paired with deluxe floral champagne damask fabric.",
+    price: 750000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1512211534123-531e2d36d24a?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Dimensions": "140cm (L) x 30cm (Diameter)",
-      "Core": "Hypoallergenic shredded microfiber and cooling memory foam",
-      "Fabric": "Ultra-soft cotton velvet casing"
+      "Includes": "1 x Royal 3-Seater, 2 x Gilded Master Armchairs",
+      "Gilding": "Intricate hand-applied 24-Karat Gold Leaf gilding",
+      "Upholstery": "Directly imported Venetian silk-blended luxury champagne damask",
+      "Detailing": "Deep-diamond tufting, hand-twisted piping, deluxe feather-blend cushions"
     },
     isAvailable: true
   },
   {
-    id: "luxury-feather-touch-topper",
-    name: "Feather-Touch Comfort Topper",
-    description: "Instantly upgrade any old mattress. A lush 3-inch thick microfiber mattress topper that adds cloud-like cushioning comfort to any bed.",
-    price: 28000,
-    category: "Foam Products",
-    imageUrl: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&auto=format&fit=crop&q=80",
+    id: "artisan-rattan-living-set",
+    name: "Bali Premium Teak & Rattan Lounge Set",
+    description: "Bring luxurious organic tropical serenity into your master sitting rooms. Crafted using seasoned premium-grade solid teak wood matched with tight handmade split-cane wicker weave details and warm linen cushions.",
+    price: 260000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800&auto=format&fit=crop&q=80",
     specifications: {
-      "Thickness": "3 Inches (7.5cm) plush overlay",
-      "Fill": "Down-alternative siliconized feather microfibers",
-      "Attachment": "4 x Elastic corner anchor straps to hold in place"
+      "Includes": "1 x 3-Seater Sofa, 2 x Matching Teak-Rattan Lounge Armchairs",
+      "Wood Material": "Burmese plantation-grown premium Teak timber",
+      "Weave Type": "100% Traditional Indonesian double-caning wicker weave",
+      "Cushion Base": "Weatherproof and fade-resistant high-density foam in natural oatmeal cotton"
+    },
+    isAvailable: true
+  },
+  {
+    id: "parisian-salon-sofa",
+    name: "Parisian Classic Salon Curved Sofa Set",
+    description: "Soft romantic luxury. Gently curved kidneys-shaped sofa set designed to foster intimate conversations. Upholstered in premium velvet with polished solid brass bases that capture reflections elegantly.",
+    price: 465000,
+    category: "Sofa Set",
+    imageUrl: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Includes": "1 x Curved Kidneys-Shape 3-Seater, 1 x Matching Curved Accent Chair",
+      "Upholstery": "Premium velvet in Parisian Rose Blush",
+      "Base Plinth": "Highly polished brass steel wrap detailing",
+      "Structure": "Double-layered elastic webbing, resilient solid wood core"
     },
     isAvailable: true
   }
 ];
+
+const mappedProducts: Product[] = rawProducts.map((p) => {
+  let category = p.category;
+  if (category === "Bedroom Furniture") {
+    category = "Bedroom Sets";
+  } else if (category === "Dining Furniture") {
+    category = "Dining Sets";
+  } else if (category === "Sofa Set" || category === "Sofa Sets") {
+    category = "Sofa Sets";
+  } else if (category === "Chairs") {
+    if (p.id.includes("dining")) {
+      category = "Dining Sets";
+    } else {
+      category = "Custom Furniture";
+    }
+  } else if (category === "Wardrobes") {
+    category = "Custom Furniture";
+  }
+  return {
+    ...p,
+    category
+  };
+});
+
+const extraProducts: Product[] = [
+  {
+    id: "royal-multitasker-sofa-cum-bed",
+    name: "Royal Multitasker Velvet Sofa Cum Bed",
+    description: "The epitome of space-saving luxury. Unfolds smoothly via a German counter-balanced hydraulic pull-out mechanism. Upholstered in stain-resistant performance velvet with modular side storage armrests.",
+    price: 185000,
+    category: "Sofa Cum Beds",
+    imageUrl: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Bed Mode Dimensions": "King Size (72 x 78 inches)",
+      "Mechanism": "Premium patented counter-balanced hydraulic glide",
+      "Fabric": "Stain-resistant Royal Velvet with high double-rub count",
+      "Mattress Core": "6-inch Orthopedic cooling gel memory foam built-in"
+    },
+    isAvailable: true
+  },
+  {
+    id: "milano-dual-fold-sofa-bed",
+    name: "Milano Dual-Fold Premium Sofa Bed",
+    description: "Sleek contemporary design that transitions from an elegant 3-seater sofa to a luxurious double bed in under 10 seconds. Crafted with high-grade steel click-clack machinery and solid ash wood legs.",
+    price: 145000,
+    category: "Sofa Cum Beds",
+    imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Sofa Mode": "Compact 3-Seater Comfort Lounge",
+      "Bed Mode": "Double Bed Size (60 x 75 inches)",
+      "Inner Framework": "Reinforced high-tensile structural carbon steel",
+      "Cushioning": "High-resiliency 40-density orthopedic support foam"
+    },
+    isAvailable: true
+  },
+  {
+    id: "signature-master-interior-consultation",
+    name: "Elite Interior Design Consultation & 3D Visualization",
+    description: "Creation Interior's premium complete turnkey design experience. Includes on-site measurements, complete floor layouts, color theme charts, sample board collection, and realistic 3D photorealistic architectural renders.",
+    price: 75000,
+    category: "Interior Design",
+    imageUrl: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Consultation Type": "Turnkey Full Home Design Consultation & Execution Roadmap",
+      "Deliverables": "Full 3D Architectural Walkthrough, Material Sample Board, Electrical & Lighting Maps",
+      "Site Visits": "Up to 3 personal site audits by senior lead architect",
+      "Refundable": "100% credited back into manufacturing order value"
+    },
+    isAvailable: true
+  },
+  {
+    id: "royal-palace-complete-living-design",
+    name: "Royal Palace Signature Theme Design Package",
+    description: "Bespoke design theme curation for your villa, penthouse, or executive suite. Complete layout customization, custom molding designs, luxury lighting maps, and coordinated fabric pairings.",
+    price: 150000,
+    category: "Interior Design",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Scope": "Complete Living & Bedroom Theme Coordination",
+      "Renders": "4K Ultra-HD photorealistic architectural visualizations (3 angles per room)",
+      "Timeframe": "Complete design package delivered in 14 business days",
+      "Designer": "Exclusive matching with senior design consultant"
+    },
+    isAvailable: true
+  },
+  {
+    id: "custom-monarch-carved-majestic-bed",
+    name: "Custom Monarch Hand-Carved Teak Bed Set",
+    description: "A gorgeous luxury master suite completely handmade to your dimensions. Features solid premium Grade-A Burmese teak wood, exquisite hand-chiseled details by expert artisans, and custom fabric accent headboard colors of your choice.",
+    price: 495000,
+    category: "Custom Furniture",
+    imageUrl: "https://images.unsplash.com/photo-1505693416388-ac5ce058fe85?w=800&auto=format&fit=crop&q=80",
+    specifications: {
+      "Wood Type": "100% Seasoned Grade-A Teak Wood (Burmese origin)",
+      "Customizability": "Select headboard fabrics, polish tones (natural, walnut, dark oak), and dimensions",
+      "Craftsmanship": "100% Hand-carved master artisan paneling with intricate scrollwork",
+      "Warranty": "Lifetime termite-proof guarantee"
+    },
+    isAvailable: true
+  }
+];
+
+export const defaultProducts: Product[] = [...mappedProducts, ...extraProducts];
