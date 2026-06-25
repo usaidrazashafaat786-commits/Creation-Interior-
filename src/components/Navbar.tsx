@@ -2,6 +2,8 @@ import React from "react";
 import { ShoppingBag, Search, LogIn, User, Smartphone, Code, ShieldCheck, Tag } from "lucide-react";
 import { UserProfile } from "../types";
 import ThemeToggle from "./ThemeToggle";
+// @ts-ignore
+import logoImg from "../logo.png";
 
 interface NavbarProps {
   user: UserProfile | null;
@@ -36,9 +38,9 @@ export default function Navbar({
         <div className="flex items-center justify-between h-20 gap-4">
           
           {/* Logo Brand Frame */}
-          <div className="flex items-center gap-2 cursor-pointer flex-shrink-0" onClick={() => setActiveView("shop")}>
-            <div className="w-10 h-10 bg-gradient-to-tr from-amber-600 to-amber-400 rounded-xl flex items-center justify-center text-zinc-950 font-serif font-black text-xl shadow-md border border-amber-500/20">
-              C
+          <div className="flex items-center gap-3 cursor-pointer flex-shrink-0" onClick={() => setActiveView("shop")}>
+            <div className="w-11 h-11 bg-[#1A0F1A] rounded-xl flex items-center justify-center overflow-hidden border border-[#D4AF37]/30 shadow-md">
+              <img src={logoImg} alt="Creation Interiors Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
             <div>
               <h1 className="text-lg font-serif font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-none">

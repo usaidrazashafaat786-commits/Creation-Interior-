@@ -4,6 +4,22 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", Georgia, Cambria, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Custom logo colors mapped to Tailwind v4 variables */
+  --color-brand-purple: #1A0F1A;
+  --color-brand-gold: #D4AF37;
+
+  /* Override amber to match the logo's premium gold (#D4AF37) */
+  --color-amber-400: #e5c358;
+  --color-amber-500: #D4AF37;
+  --color-amber-600: #bca02d;
+  --color-amber-700: #9a8220;
+
+  /* Override zinc colors in dark mode to the gorgeous logo deep amethyst purple */
+  --color-zinc-950: #1A0F1A;
+  --color-zinc-900: #251625;
+  --color-zinc-850: #331e33;
+  --color-zinc-800: #422642;
 }
 
 /* Custom gorgeous scrollbar styles for luxury coding console */
