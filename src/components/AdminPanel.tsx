@@ -4,8 +4,9 @@ import {
   X, Plus, Edit, Trash2, Landmark, Check, 
   HelpCircle, Settings, Image, FolderKanban, 
   Lock, KeyRound, Upload, PlusCircle, LogOut, 
-  Eye, RefreshCw, Layers
+  Eye, RefreshCw, Layers, Code
 } from "lucide-react";
+import KotlinExplorer from "./KotlinExplorer";
 
 interface AdminPanelProps {
   isOpen: boolean;
@@ -48,7 +49,7 @@ export default function AdminPanel({
   adminCreds,
   onUpdateAdminCreds
 }: AdminPanelProps) {
-  const [activeTab, setActiveTab] = useState<"products" | "categories" | "banners" | "settings">("products");
+  const [activeTab, setActiveTab] = useState<"products" | "categories" | "banners" | "codebase" | "settings">("products");
   
   // Admin authentication state
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
@@ -495,6 +496,17 @@ export default function AdminPanel({
               >
                 <Image className="w-4 h-4 text-[#D4AF37]" />
                 Banners & Slides ({slides.length})
+              </button>
+              <button
+                onClick={() => setActiveTab("codebase")}
+                className={`py-3.5 px-4 font-bold text-xs tracking-wide flex items-center gap-2 border-b-2 transition-all ${
+                  activeTab === "codebase"
+                    ? "border-[#D4AF37] text-zinc-900 dark:text-zinc-50 font-black"
+                    : "border-transparent text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
+                }`}
+              >
+                <Code className="w-4 h-4 text-[#D4AF37]" />
+                Android Code Explorer 🛠️
               </button>
               <button
                 onClick={() => setActiveTab("settings")}
@@ -952,6 +964,20 @@ export default function AdminPanel({
                       </div>
                     )}
                   </div>
+                </div>
+              )}
+
+              {/* TAB 3.5: ANDROID BLUEPRINT CODEBASE EXPLORER */}
+              {activeTab === "codebase" && (
+                <div className="p-6 md:p-8 space-y-4 max-w-6xl mx-auto">
+                  <div className="bg-[#D4AF37]/5 p-4 rounded-2xl border border-[#D4AF37]/20 text-xs text-zinc-400 leading-relaxed flex items-center gap-3.5 mb-2">
+                    <span className="text-xl">📱</span>
+                    <div>
+                      <h4 className="font-bold text-zinc-900 dark:text-[#D4AF37]">Android Companion Application Codebase</h4>
+                      <p>Below you can browse, study, copy, and export Jetpack Compose implementation files directly to build your native mobile experience.</p>
+                    </div>
+                  </div>
+                  <KotlinExplorer />
                 </div>
               )}
 

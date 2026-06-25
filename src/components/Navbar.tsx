@@ -57,32 +57,6 @@ export default function Navbar({
             </div>
           </div>
 
-          {/* Quick links to toggle Storefront vs Android Code Explorer */}
-          <div className="hidden md:flex gap-1 bg-zinc-100 dark:bg-zinc-900/50 p-1 rounded-xl border border-zinc-200/50 dark:border-zinc-800">
-            <button
-              onClick={() => setActiveView("shop")}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
-                activeView === "shop"
-                  ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm"
-                  : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
-              }`}
-            >
-              <Smartphone className="w-3.5 h-3.5" />
-              Interactive Storefront
-            </button>
-            <button
-              onClick={() => setActiveView("codebase")}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
-                activeView === "codebase"
-                  ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm"
-                  : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
-              }`}
-            >
-              <Code className="w-3.5 h-3.5 animate-pulse" />
-              Jetpack Compose Code Explorer
-            </button>
-          </div>
-
           {/* Center search input */}
           {activeView === "shop" && (
             <div className="relative max-w-sm w-full hidden sm:block">
@@ -157,32 +131,6 @@ export default function Navbar({
           </div>
 
         </div>
-      </div>
-
-      {/* Sub menu toolbar for mobile */}
-      <div className="flex md:hidden border-t border-zinc-150 dark:border-zinc-85 gap-1 bg-zinc-50 dark:bg-zinc-900/40 p-2 justify-center">
-        <button
-          onClick={() => setActiveView("shop")}
-          className={`px-4 py-2 rounded-lg text-xs font-black transition flex items-center gap-1.5 ${
-            activeView === "shop"
-              ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm border border-zinc-200 dark:border-zinc-700"
-              : "text-zinc-510 hover:text-zinc-800"
-          }`}
-        >
-          <Smartphone className="w-3.5 h-3.5" />
-          Storefront
-        </button>
-        <button
-          onClick={() => setActiveView("codebase")}
-          className={`px-4 py-2 rounded-lg text-xs font-black transition flex items-center gap-1.5 ${
-            activeView === "codebase"
-              ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm border border-zinc-200 dark:border-zinc-700"
-              : "text-zinc-510 hover:text-zinc-800"
-          }`}
-        >
-          <Code className="w-3.5 h-3.5" />
-          Code Explorer
-        </button>
       </div>
     </nav>
   );

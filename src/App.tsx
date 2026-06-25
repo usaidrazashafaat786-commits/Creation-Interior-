@@ -8,7 +8,6 @@ import CartSidebar from "./components/CartSidebar";
 import AdminPanel from "./components/AdminPanel";
 import AuthView from "./components/AuthView";
 import OrderHistory from "./components/OrderHistory";
-import KotlinExplorer from "./components/KotlinExplorer";
 import { defaultProducts } from "./data/defaultProducts";
 import { Product, CartItem, Order, UserProfile, BannerSlide } from "./types";
 import { useRealFirebase, db, auth } from "./services/firebase";
@@ -341,164 +340,141 @@ export default function App() {
         logoUrl={logoUrl}
       />
 
-      {activeView === "shop" ? (
-        /* INTERACTIVE STOREFRONT VIEW */
-        <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-9">
+      {/* INTERACTIVE STOREFRONT VIEW */}
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-9">
+        
+        {/* Banner Hero Slides */}
+        <BannerSlider slides={bannerSlides} />
+
+        {/* Quick Info bar */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
+              🚚
+            </div>
+            <div>
+              <h4 className="font-bold">Pan-India Freight Delivery</h4>
+              <p className="text-zinc-400 mt-0.5">Free transit insurance & on-site assembly tools</p>
+            </div>
+          </div>
+          <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
+              🔨
+            </div>
+            <div>
+              <h4 className="font-bold">Artisanal Customization</h4>
+              <p className="text-zinc-400 mt-0.5">Custom dimension fabrics & seasoned teakwood slabs</p>
+            </div>
+          </div>
+          <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
+              📱
+            </div>
+            <div>
+              <h4 className="font-bold">WhatsApp Direct dispatch Checkouts</h4>
+              <p className="text-zinc-400 mt-0.5">Secure item details sent directly to the managers</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Category Filter ribbons */}
+        <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} categories={categories} />
+
+        {/* Catalog grid and filters decks */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Banner Hero Slides */}
-          <BannerSlider slides={bannerSlides} />
-
-          {/* Quick Info bar */}
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
-                🚚
-              </div>
-              <div>
-                <h4 className="font-bold">Pan-India Freight Delivery</h4>
-                <p className="text-zinc-400 mt-0.5">Free transit insurance & on-site assembly tools</p>
-              </div>
-            </div>
-            <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
-                🔨
-              </div>
-              <div>
-                <h4 className="font-bold">Artisanal Customization</h4>
-                <p className="text-zinc-400 mt-0.5">Custom dimension fabrics & seasoned teakwood slabs</p>
-              </div>
-            </div>
-            <div className="p-4.5 bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl shadow-sm text-xs flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 font-bold">
-                📱
-              </div>
-              <div>
-                <h4 className="font-bold">WhatsApp Direct dispatch Checkouts</h4>
-                <p className="text-zinc-400 mt-0.5">Secure item details sent directly to the managers</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Category Filter ribbons */}
-          <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} categories={categories} />
-
-          {/* Catalog grid and filters decks */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left filtration panel sidebar */}
+          <div className="lg:col-span-3 space-y-6">
             
-            {/* Left filtration panel sidebar */}
-            <div className="lg:col-span-3 space-y-6">
-              
-              {/* Range inputs */}
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm text-xs space-y-4">
-                <h4 className="font-serif font-bold text-sm text-zinc-900 dark:text-zinc-100 border-b border-zinc-100 dark:border-zinc-800 pb-2 flex items-center gap-2">
-                  <span>Price Range Limit</span>
-                </h4>
-                <div>
-                  <div className="flex justify-between text-[11px] font-bold text-zinc-400 mb-2">
-                    <span>Min: ₹ 0</span>
-                    <span className="text-amber-600 dark:text-amber-400">Max: ₹ {maxPrice.toLocaleString("en-IN")}</span>
-                  </div>
-                  <input
-                    type="range"
-                    min="2000"
-                    max="60000"
-                    step="1000"
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(parseInt(e.target.value))}
-                    className="w-full accent-amber-500 outline-none h-1 bg-zinc-200 rounded-lg cursor-pointer dark:bg-zinc-700"
-                  />
-                  <span className="text-[10px] text-zinc-400 block mt-2 text-right">Adjust slider limits to filter premium models</span>
+            {/* Range inputs */}
+            <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm text-xs space-y-4">
+              <h4 className="font-serif font-bold text-sm text-zinc-900 dark:text-zinc-100 border-b border-zinc-100 dark:border-zinc-800 pb-2 flex items-center gap-2">
+                <span>Price Range Limit</span>
+              </h4>
+              <div>
+                <div className="flex justify-between text-[11px] font-bold text-zinc-400 mb-2">
+                  <span>Min: ₹ 0</span>
+                  <span className="text-amber-600 dark:text-amber-400">Max: ₹ {maxPrice.toLocaleString("en-IN")}</span>
                 </div>
+                <input
+                  type="range"
+                  min="2000"
+                  max="60000"
+                  step="1000"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                  className="w-full accent-amber-500 outline-none h-1 bg-zinc-200 rounded-lg cursor-pointer dark:bg-zinc-700"
+                />
+                <span className="text-[10px] text-zinc-400 block mt-2 text-right">Adjust slider limits to filter premium models</span>
               </div>
+            </div>
 
-              {/* Order history section */}
-              {user ? (
-                <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm">
-                  <OrderHistory orders={currentUserOrders} />
-                </div>
-              ) : (
-                <div className="p-6 bg-zinc-100 dark:bg-zinc-900/50 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl text-center text-xs text-zinc-500 space-y-2.5">
-                  <Landmark className="w-6 h-6 text-amber-500 mx-auto" />
-                  <p>Log in as customer to unlock your dynamic Purchase Order Receipts list.</p>
-                  <button
-                    onClick={() => setIsAuthOpen(true)}
-                    className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
-                  >
-                    Login Now
-                  </button>
-                </div>
-              )}
-
-              {/* Action Promo card */}
-              <div className="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-zinc-950 dark:from-zinc-900 dark:to-zinc-900 rounded-3xl p-6 text-white border border-zinc-850 shadow-md">
-                <Gift className="w-8 h-8 text-amber-400 mb-3" />
-                <h4 className="font-serif font-bold text-base text-zinc-150 leading-tight">Interactive Code Workspace</h4>
-                <p className="text-[11px] text-zinc-400 leading-relaxed mt-1.5">
-                  We have bundled the full Android Jetpack Compose codebase directly under the companion view!
-                </p>
+            {/* Order history section */}
+            {user ? (
+              <div className="bg-white dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 p-6 rounded-3xl shadow-sm">
+                <OrderHistory orders={currentUserOrders} />
+              </div>
+            ) : (
+              <div className="p-6 bg-zinc-100 dark:bg-zinc-900/50 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl text-center text-xs text-zinc-500 space-y-2.5">
+                <Landmark className="w-6 h-6 text-amber-500 mx-auto" />
+                <p>Log in as customer to unlock your dynamic Purchase Order Receipts list.</p>
                 <button
-                  onClick={() => setActiveView("codebase")}
-                  className="mt-4 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-zinc-950 text-xs font-black rounded-xl transition flex items-center gap-1.5 outline-none"
+                  onClick={() => setIsAuthOpen(true)}
+                  className="text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
                 >
-                  <Code className="w-3.5 h-3.5" />
-                  Explore Kotlin Source files
+                  Login Now
                 </button>
               </div>
-
-            </div>
-
-            {/* Catalog list right */}
-            <div className="lg:col-span-9 space-y-5">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-zinc-500">
-                  Showing <strong className="text-zinc-850 dark:text-zinc-200">{filteredProducts.length}</strong> premium models matched
-                </span>
-                
-                {selectedCategory && (
-                  <span className="text-[10px] font-bold px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-full tracking-wider uppercase">
-                    Category: {selectedCategory}
-                  </span>
-                )}
-              </div>
-
-              {filteredProducts.length === 0 ? (
-                <div className="text-center py-20 bg-white dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-850 rounded-3xl">
-                  <Sofa className="w-12 h-12 text-zinc-300 mx-auto mb-3" />
-                  <p className="text-sm font-bold text-zinc-800 dark:text-zinc-300">No furniture matching your criteria.</p>
-                  <button
-                    onClick={() => {
-                      setSearchQuery("");
-                      setSelectedCategory(null);
-                      setMaxPrice(60000);
-                    }}
-                    className="text-xs text-amber-600 dark:text-amber-400 font-bold mt-1 hover:underline"
-                  >
-                    Clear All Filters
-                  </button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {filteredProducts.map((prod) => (
-                    <ProductCard
-                      key={prod.id}
-                      product={prod}
-                      onShowDetails={setSelectedProduct}
-                      onAddToCart={handleAddToCart}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
+            )}
 
           </div>
 
-        </main>
-      ) : (
-        /* KOTLIN ANDROID CODEBASE BLUEPRINTS VIEW */
-        <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-4">
-          <KotlinExplorer />
-        </main>
-      )}
+          {/* Catalog list right */}
+          <div className="lg:col-span-9 space-y-5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-zinc-500">
+                Showing <strong className="text-zinc-850 dark:text-zinc-200">{filteredProducts.length}</strong> premium models matched
+              </span>
+              
+              {selectedCategory && (
+                <span className="text-[10px] font-bold px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-full tracking-wider uppercase">
+                  Category: {selectedCategory}
+                </span>
+              )}
+            </div>
+
+            {filteredProducts.length === 0 ? (
+              <div className="text-center py-20 bg-white dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-850 rounded-3xl">
+                <Sofa className="w-12 h-12 text-zinc-300 mx-auto mb-3" />
+                <p className="text-sm font-bold text-zinc-800 dark:text-zinc-300">No furniture matching your criteria.</p>
+                <button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedCategory(null);
+                    setMaxPrice(60000);
+                  }}
+                  className="text-xs text-amber-600 dark:text-amber-400 font-bold mt-1 hover:underline"
+                >
+                  Clear All Filters
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {filteredProducts.map((prod) => (
+                  <ProductCard
+                    key={prod.id}
+                    product={prod}
+                    onShowDetails={setSelectedProduct}
+                    onAddToCart={handleAddToCart}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+        </div>
+
+      </main>
 
       {/* Cart Drawer Overlay */}
       <CartSidebar
@@ -553,7 +529,7 @@ export default function App() {
           <p className="font-serif text-zinc-900 dark:text-zinc-100 font-black">Creation Interiors Fine furniture</p>
           <p>© 2026 Creation Interiors. All architectural and carpentry designs reserved.</p>
           <p className="text-[10px] text-zinc-400">
-            Crafted for Android & Web platform. Access code explorer from top right menu to view/copy Jetpack Compose screens.
+            Crafted for Android & Web platform. Access full Jetpack Compose Kotlin codebase inside the Control Board Panel under Admin Access.
           </p>
           <button
             onClick={() => setIsAdminOpen(true)}
